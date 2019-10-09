@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  worker: one
+  total: 1
+  payed: false
+  comment: MyText
+  table: one
+
+two:
+  worker: two
+  total: 1
+  payed: false
+  comment: MyText
+  table: two

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  office: one
+  name: MyString
+  rol: 1
+  adress: MyString
+  number: 1
+  admin: false
+
+two:
+  office: two
+  name: MyString
+  rol: 1
+  adress: MyString
+  number: 1
+  admin: false
