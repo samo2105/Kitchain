@@ -4,5 +4,5 @@ class Worker < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   belongs_to :office
-  has_many :sales
+  has_many :sales, dependent: :destroy
 end
