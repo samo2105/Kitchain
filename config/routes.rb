@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   resources :sales
   resources :products
-  devise_for :workers
+  devise_for :workers, controllers:{registrations: 'workers/registrations'}
   resources :workers
   resources :offices
-  devise_for :commerces
+  devise_for :commerces, controllers:{registrations: 'commerces/registrations'}
   resources :commerces
   get 'landing', to: 'landing#index'
   get 'landing/features', to: 'landing#features', as: 'features'
