@@ -1,0 +1,52 @@
+<%= render 'commerces/shared/navbarcommerce' %>
+<a href='#menu-toggle' class="btn btn-primary menu-toggle float-right">Menú</a>
+<div class="container">
+  <h2 class="text-center card"> Bienvenido al Dashboard</h2>
+  <div class="card-deck">
+    <div class="card">
+      <img class="card-img-top" src="https://www.parrillaleonesa.com.mx/images/PAR_icon_sucursales.png" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Cantidad de Oficinas</h5>
+        <p class="card-text">Oficinas: <%= @commerce_offices.count %></p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img-top" src="https://www.crecenegocios.com/wp-content/uploads/2011/04/tipos-de-ventas.jpg" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Ventas totales</h5>
+        <p class="card-text">Oficinas: <%= @commerce_offices.count %></p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img-top" src="https://st2.depositphotos.com/5425740/11033/v/950/depositphotos_110339666-stock-illustration-building-company-workers.jpg" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Cantidad de Trabajadores</h5>
+        <p class="card-text">totales: <%= @commerce_sales.sum {|sale| sale.total} %></p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="card-deck">
+    <div class="card">
+      <img class="card-img-top" src="https://files.informabtl.com/uploads/2017/05/bigstock-Cosmetic-Packaging-Spa-And-Bea-179251741-e1494219584976.jpg" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Cantidad de productos</h5>
+        <p class="card-text">productos: <%= @commerce_products.count %></p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img-top" src="https://www.softmant.com/images/mantenimiento/mantenimiento_actualizaot.png" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Cantidad de órdenes</h5>
+        <p class="card-text">órdenes: <%= @commerce_orders.count %></p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+</div>

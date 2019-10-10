@@ -1,0 +1,61 @@
+<div id="wrapper">
+  <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <br>
+      <li class="sidebar-brand text-center text-white">
+        <h3>Kitchain</h3>
+      </li>
+      <li>
+        <%= link_to 'Dashboard', dashboards_commerce_path, class:'btn btn-info text-left text-white col-lg-12 mt-1' %>
+      </li>
+      <li>
+        <%= link_to 'Ventas', dashboards_commerce_sales_path, class:'btn btn-success text-left text-white col-lg-12 mt-1' %>
+      </li>
+      <li>
+        <%= link_to 'Cocina/Productos', dashboards_commerce_kitchen_path, class:'btn btn-danger text-left text-white col-lg-12 mt-1' %>
+      </li>
+      <li>
+        <%= link_to 'Métricas Generales', dashboards_commerce_generals_path, class:'btn btn-warning text-left text-white col-lg-12 mt-1' %>
+      </li>
+      <hr>
+      <li>
+        <a href='#menu-toggle' class="btn btn-primary menu-toggle text-center text-white col-lg-12">Ocultar menú</a>
+      </li>
+      <hr>
+      <li>
+        <h5 class="text-white text-center">
+          <%= current_commerce.name %>
+        </h5>
+      </li>
+      <li>
+        <img src="https://image.freepik.com/vector-gratis/perfil-avatar-hombre-icono-redondo_24640-14044.jpg" class="img-thumbnail" style="max-height: 15vh; margin-left: 25%">
+      </li>
+      <br>
+      <li>
+        <h5 class="text-white text-center">
+          <%= link_to 'Editar Perfil', edit_commerce_registration_path %>
+        </h5>
+      </li>
+      <li>
+        <h5 class="text-white text-center">
+          <%= link_to 'Salir', destroy_commerce_session_path, method: :delete %>
+        </h5>
+      </li>
+    </ul>
+  </div>
+
+  <!-- /#sidebar-wrapper -->
+
+  <!-- Page Content -->
+  <!-- /#page-content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- Menu Toggle Script -->
+<script>
+    $(".menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>

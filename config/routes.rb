@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  get 'dashboards/commerce', to: 'dashboards#commerce_index'
+  get 'dashboards/commerce_sales'
+  get 'dashboards/commerce_kitchen'
+  get 'dashboards/commerce_generals'
+  get 'dashboards/workers', to: 'dashboards#workers_index'
+  get 'dashboards/workers_kitchen'
+  get 'dashboards/workers_products'
+  get 'dashboards/workers_sales'
+  get 'dashboards/workers_tables'
   resources :sales
   resources :products
   devise_for :workers, controllers:
