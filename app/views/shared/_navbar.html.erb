@@ -21,6 +21,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
            <% if commerce_signed_in? %>
             <%= link_to "Perfil", edit_commerce_registration_path, class:'dropdown-item' %>
+            <%= link_to 'Dashboards', dashboards_commerce_path, class:'dropdown-item'%>
             <%= link_to 'Salir', destroy_commerce_session_path, class:'dropdown-item', method: :delete %>
           <% else %>
             <%= link_to 'Registro Empresa', new_commerce_registration_path, class:'dropdown-item' %>
