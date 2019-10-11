@@ -1,2 +1,106 @@
 <%= render 'commerces/shared/navbarcommerce' %>
-<br><br>nú</a>
+<br><br>
+<div class="container bg-info text-center">
+  <br>
+  <h1 class="text-white"> Cocina y productos </h1>
+  <br>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <br>
+        <h2> Últimos productos agregados (5)</h2>
+        <br>
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">Producto</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Sucursal</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @commerce_products.max(5).each do |product| %>
+            <tr>
+              <td><%= product.name %></td>
+              <td><%= product.price %></td>
+              <td><%= product.quantity %></td>
+              <th><%= product.office.name %></th>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <br>
+
+      <div class="card">
+        <br>
+        <h2>Productos más vendido</h2>
+        <hr>
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">Producto</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Cantidad vendida</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @best_sale_products.max(5).reverse_each do |product, value| %>
+            <tr>
+              <td><%= product.name %></td>
+              <td><%= product.price %></td>
+              <td><%= value %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+      <br>
+
+      <div class="card">
+        <br>
+        <h2> Productos/Ventas </h2>
+        <div class="p-4"><%= bar_chart @best_sale_chart, messages: {empty: "No hay datos"} %></div>
+      </div>
+
+      <br>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="card">
+        <br>
+        <h2> Últimas órdenes (5)</h2>
+        <br>
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">Trabajador</th>
+            <th scope="col">Monto</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Cantidad</th>
+          </tr>
+          </thead>
+          <tbody>
+        <% @commerce_orders.max(5).each do |order| %>
+            <tr>
+              <td><%= order.sale.worker.name %></td>
+              <td><%= order.amount %></td>
+              <td><%= order.product.name %></td>
+              <th><%= order.quantity %></th>
+            </tr>
+        <% end %>
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <div class="card">
+        <br>
+        <h2> Oficinas/Órdenes </h2>
+        <div class="p-4"><%= bar_chart @best_offices_orders, messages: {empty: "No hay datos"} %></div>
+      </div>
+    </div>
+
+  </div>
+</div>
