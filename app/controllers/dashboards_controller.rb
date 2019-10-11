@@ -17,12 +17,17 @@ class DashboardsController < ApplicationController
   end
 
   def commerce_kitchen
-    @best_sale = @commerce_orders.group(:product_id).count
+    @best_sale = @commerce_orders.group(:product_id).sum(:quantity)
     @best_sale_products = {}
     @best_sale.each do |k,v|
       @best_sale_products[@commerce_products.find(k)] = v
     end
     @best_sale_products = @best_sale_products.sort_by{|k, v| v}
+    @best_sale_chart = @best_sale_products.map{|product, value| [product.name, value]}
+    @best_offices_orders = {}
+    @commerce_offices.each do |office|
+      @best_offices_orders[office.name] = office.workers.sum {|worker| worker.sales.sum{|sale| sale.orders.count}}
+    end
   end
 
   def commerce_generals

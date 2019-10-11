@@ -31,7 +31,9 @@
           </tbody>
         </table>
       </div>
+
       <br>
+
       <div class="card">
         <br>
         <h2>Productos más vendido</h2>
@@ -54,8 +56,15 @@
           <% end %>
           </tbody>
         </table>
-
       </div>
+      <br>
+
+      <div class="card">
+        <br>
+        <h2> Productos/Ventas </h2>
+        <div class="p-4"><%= bar_chart @best_sale_chart, messages: {empty: "No hay datos"} %></div>
+      </div>
+
       <br>
     </div>
 
@@ -84,6 +93,12 @@
         <% end %>
           </tbody>
         </table>
+      </div>
+      <br>
+      <div class="card">
+        <br>
+        <h2> Oficinas/Órdenes </h2>
+        <div class="p-4"><%= bar_chart @best_offices_orders, messages: {empty: "No hay datos"} %></div>
       </div>
     </div>
 
