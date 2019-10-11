@@ -6,6 +6,12 @@ class DashboardsController < ApplicationController
   end
 
   def commerce_sales
+    date = Date.today
+    start_date = date.at_beginning_of_month
+    end_date = date.at_end_of_month
+    @commerce_month_sales = @commerce_sales.where(:created_at => start_date..end_date)
+    @commerce_today_sales = @commerce_month_sales.where(created_at: date.at_beginning_of_day..date.at_end_of_day)
+    @commerce_sale_chart = {general: @commerce_sales.sum {|sale| sale.total}, mes: @commerce_month_sales.sum{|sale| sale.total}, hoy: @commerce_today_sales.sum{|sale| sale.total}}
   end
 
   def commerce_kitchen

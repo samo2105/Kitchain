@@ -1,2 +1,75 @@
 <%= render 'commerces/shared/navbarcommerce' %>
 <br><br>
+<div class="container bg-info">
+  <h1 class="text-white text-center"> Tu dashboard de ventas</h1>
+  <div class="row">
+    <div class="col-sm-6 text-center">
+      <div class="card">
+      <br>
+      <h2> Rendimiento de tus sucursales </h2>
+      <hr>
+      <table class="table table-light">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Sucursal</th>
+          <th scope="col">Trabajadores</th>
+          <th scope="col">Ventas</th>
+          <th scope="col">% Ventas Totales</th>
+        </tr>
+        </thead>
+        <tbody>
+          <% @commerce_offices.max(10).each do |office| %>
+          <tr>
+            <th scope="row"><%= office.id %></th>
+            <td><%= office.name %></td>
+            <td><%= office.workers.count %></td>
+            <td><%= number_to_currency( office.workers.sum {|worker| worker.sales.sum {|sale| sale.total} }, precision: 0) %></td>
+            <td><%= number_to_percentage((((office.workers.sum {|worker| worker.sales.sum {|sale| sale.total} }) / @commerce_sales.sum {|sale| sale.total})*100), precision: 0)  %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+      <br>
+    </div>
+
+    <div class="col-sm-6 text-center">
+      <div class="card">
+        <br>
+      <h2> Ventas totales </h2>
+        <hr>
+        <table class="table table-light">
+          <thead>
+          <tr>
+            <th scope="col">Ventas</th>
+            <th scope="col">Total</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th>General:</th>
+            <th><%=number_to_currency(@commerce_sales.sum {|sale| sale.total}, precision: 0) %></th>
+          </tr>
+          <tr>
+            <th>Este Mes:</th>
+            <th><%=number_to_currency(@commerce_month_sales.sum {|sale| sale.total}, precision: 0) %></th>
+          </tr>
+          <tr>
+            <th>Hoy:</th>
+            <th><%=number_to_currency(@commerce_today_sales.sum {|sale| sale.total}, precision: 0) %></th>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <div class="card">
+        <br>
+        <h2> Gráfico de ventas </h2>
+        <hr>
+        <div class="p-4"><%= column_chart @commerce_sale_chart %></div>
+      </div>
+    </div>
+
+  </div>
+</div>
