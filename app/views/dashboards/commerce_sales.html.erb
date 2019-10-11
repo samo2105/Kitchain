@@ -1,7 +1,9 @@
 <%= render 'commerces/shared/navbarcommerce' %>
 <br><br>
 <div class="container bg-info">
+  <br>
   <h1 class="text-white text-center"> Tu dashboard de ventas</h1>
+  <br>
   <div class="row">
     <div class="col-sm-6 text-center">
       <div class="card">
@@ -19,7 +21,7 @@
         </tr>
         </thead>
         <tbody>
-          <% @commerce_offices.max(10).each do |office| %>
+          <% @commerce_offices.each do |office| %>
           <tr>
             <th scope="row"><%= office.id %></th>
             <td><%= office.name %></td>
@@ -32,6 +34,12 @@
       </table>
     </div>
       <br>
+      <div class="card">
+        <br>
+        <h2> Ventas por oficina </h2>
+        <hr>
+        <div class="p-4"><%= column_chart @commerce_office_sales, prefix: "$", refresh: 60, messages: {empty: "No hay datos"}  %></div>
+      </div>
     </div>
 
     <div class="col-sm-6 text-center">
@@ -67,7 +75,7 @@
         <br>
         <h2> Gráfico de ventas </h2>
         <hr>
-        <div class="p-4"><%= column_chart @commerce_sale_chart %></div>
+        <div class="p-4"><%= column_chart @commerce_sale_chart, prefix: "$", refresh: 60, messages: {empty: "No hay datos"}  %></div>
       </div>
     </div>
 
