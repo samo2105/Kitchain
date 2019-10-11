@@ -17,6 +17,12 @@ class DashboardsController < ApplicationController
   end
 
   def commerce_kitchen
+    @best_sale = @commerce_orders.group(:product_id).count
+    @best_sale_products = {}
+    @best_sale.each do |k,v|
+      @best_sale_products[@commerce_products.find(k)] = v
+    end
+    @best_sale_products = @best_sale_products.sort_by{|k, v| v}
   end
 
   def commerce_generals
