@@ -1,6 +1,6 @@
 class OfficesController < ApplicationController
   before_action :set_office, only: [:show, :edit, :update, :destroy]
-
+  before_action: :authenticate_commerce!
   # GET /offices
   # GET /offices.json
   def index
@@ -25,6 +25,7 @@ class OfficesController < ApplicationController
   # POST /offices.json
   def create
     @office = Office.new(office_params)
+    @office.commerce = current_commerce
 
     respond_to do |format|
       if @office.save

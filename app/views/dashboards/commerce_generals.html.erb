@@ -1,2 +1,113 @@
 <%= render 'commerces/shared/navbarcommerce' %>
 <br><br>
+<div class="container card bg-info">
+  <br>
+  <h1 class="text-center text-white"> Bienvenido <%= current_commerce.name %></h1>
+  <br>
+  <div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="https://www.ivexcom.com.mx/wp-content/uploads/2018/07/sucursales-ivexcom2.jpg" class="card-img img-thumbnail" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Cantidad de Sucursales</h5>
+          <p class="card-text">Sucursales: <%= @commerce_offices.count %> </p>
+          <ul>
+            <% @commerce_offices.max(2).each do |office| %>
+              <li>Oficina: <%= office.name %> - Trabajadores: <%= office.workers.count %> - Productos: <%= office.products.count %></li>
+            <% end %>
+          </ul>
+          <%= link_to 'Ver Sucursales', offices_path, class:'btn btn-primary float-right mb-3' %>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="https://st2.depositphotos.com/5425740/11033/v/950/depositphotos_110339666-stock-illustration-building-company-workers.jpg" class="card-img img-thumbnail" alt="...">
+      </div>
+      <div class="col-md-8" >
+        <div class="card-body">
+          <h5 class="card-title">Cantidad de Trabajadores: <%= @commerce_workers.count %></h5>
+          <p class="card-text">Trabajadores</p>
+          <ul>
+            <% @commerce_workers.max(2).each do |worker| %>
+              <li>Nombre: <%= worker.name %> - Sucursal: <%= worker.office.name %> - Ventas: <%= worker.sales.count %></li>
+            <% end %>
+          </ul>
+          <%= link_to 'Ver Trabajadores', workers_path, class:'btn btn-primary float-right mb-3' %>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="https://vilmanunez.com/wp-content/uploads/2019/03/aov.png" class="card-img img-thumbnail" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Ventas totales: <%=number_to_currency @commerce_sales.sum {|sale| sale.total} %></h5>
+          <p class="card-text">Últimas Ventas: </p>
+          <ul>
+            <% @commerce_sales.max(2).each do |sale| %>
+              <li>Total: <%= sale.total %> - Trabajador: <%= sale.worker.name %> - Productos: <%= sale.products.count %></li>
+            <% end %>
+          </ul>
+          <%= link_to 'Ver Ventas', sales_path, class:'btn btn-primary float-right mb-3' %>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="https://destinonegocio.com/wp-content/uploads/2018/09/ciclo-de-vida-de-un-producto.jpg" class="card-img img-thumbnail" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Cantidad de productos: <%= @commerce_products.count %></h5>
+          <p class="card-text">Productos:</p>
+          <ul>
+            <% @commerce_products.max(2).each do |product| %>
+              <li>Nombre: <%= product.name %> - Precio: <%= product.price %> - Cantidad: <%= product.quantity %> - Sucursal: <%= product.office.name %></li>
+            <% end %>
+          </ul>
+          <%= link_to 'Ver Productos', products_path, class:'btn btn-primary float-right mb-3' %>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="https://www.clicktomsystem.com/wp-content/uploads/Sistema-de-Comanda.jpg" class="card-img img-thumbnail" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Cantidad de órdenes: <%= @commerce_orders.count %></h5>
+          <p class="card-text">Órdenes:</p>
+          <ul>
+            <% @commerce_orders.max(2).each do |order| %>
+              <li>Total: <%= order.amount %> - Producto <%= order.product.name %> - Trabajador: <%= order.quantity %></li>
+            <% end %>
+          </ul>
+          <%= link_to 'Ver Órdenes', dashboards_commerce_sales_path , class:'btn btn-primary float-right mb-3' %>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
