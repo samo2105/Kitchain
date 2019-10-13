@@ -1,6 +1,6 @@
 <%= render 'commerces/shared/navbarcommerce' %>
 <br><br>
-<div class="container bg-info">
+<div class="container bg-info togglex">
   <br>
   <h1 class="text-white text-center"> Tu dashboard de ventas</h1>
   <br>
@@ -27,7 +27,7 @@
             <td><%= office.name %></td>
             <td><%= office.workers.count %></td>
             <td><%= number_to_currency( office.workers.sum {|worker| worker.sales.sum {|sale| sale.total} }, precision: 0) %></td>
-            <td><%= number_to_percentage((((office.workers.sum {|worker| worker.sales.sum {|sale| sale.total} }) / @commerce_sales.sum {|sale| sale.total})*100), precision: 0)  %></td>
+            <td><%= number_to_percentage((((office.workers.sum {|worker| worker.sales.sum {|sale| sale.total}}).to_f / @commerce_sales.sum {|sale| sale.total})*100), precision: 0)  %></td>
           </tr>
           <% end %>
         </tbody>

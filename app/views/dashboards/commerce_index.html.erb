@@ -18,7 +18,7 @@
               <li>Oficina: <%= office.name %> - Trabajadores: <%= office.workers.count %> - Productos: <%= office.products.count %></li>
           <% end %>
           </ul>
-          <%= link_to 'Ver más', offices_path, class:'btn btn-primary float-right mb-3' %>
+          <%= link_to 'Ver Sucursales', offices_path, class:'btn btn-primary float-right mb-3' %>
           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
         </div>
       </div>
@@ -39,7 +39,7 @@
             <li>Nombre: <%= worker.name %> - Sucursal: <%= worker.office.name %> - Ventas: <%= worker.sales.count %></li>
           <% end %>
           </ul>
-          <%= link_to 'Ver más', offices_path, class:'btn btn-primary float-right mb-3' %>
+          <%= link_to 'Ver Trabajadores', workers_path, class:'btn btn-primary float-right mb-3' %>
           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
         </div>
       </div>
@@ -60,7 +60,7 @@
               <li>Total: <%= sale.total %> - Trabajador: <%= sale.worker.name %> - Productos: <%= sale.products.count %></li>
             <% end %>
           </ul>
-          <%= link_to 'Ver más', sales_path, class:'btn btn-primary float-right mb-3' %>
+          <%= link_to 'Ver Ventas', sales_path, class:'btn btn-primary float-right mb-3' %>
           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
         </div>
       </div>
@@ -81,7 +81,7 @@
               <li>Nombre: <%= product.name %> - Precio: <%= product.price %> - Cantidad: <%= product.quantity %> - Sucursal: <%= product.office.name %></li>
             <% end %>
           </ul>
-          <%= link_to 'Ver más', products_path, class:'btn btn-primary float-right mb-3' %>
+          <%= link_to 'Ver Productos', products_path, class:'btn btn-primary float-right mb-3' %>
           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
         </div>
       </div>
@@ -102,7 +102,7 @@
               <li>Total: <%= order.amount %> - Producto <%= order.product.name %> - Trabajador: <%= order.quantity %></li>
             <% end %>
           </ul>
-          <%= link_to 'Ver más', dashboards_commerce_sales_path , class:'btn btn-primary float-right mb-3' %>
+          <%= link_to 'Ver Órdenes', dashboards_commerce_sales_path , class:'btn btn-primary float-right mb-3' %>
           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
         </div>
       </div>
