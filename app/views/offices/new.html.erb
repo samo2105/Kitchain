@@ -1,7 +1,11 @@
 <%= render 'commerces/shared/navbarcommerce' %>
 <br><br>
-<h1>New Office</h1>
+<div class="container text-center card bg-info">
+  <br>
+  <h1 class="text-white">Nueva sucursal</h1>
+  <hr>
 
 <%= render 'form', office: @office %>
 
 <%= link_to 'Back', offices_path %>
+</div>
