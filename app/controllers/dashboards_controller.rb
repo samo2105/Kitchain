@@ -14,6 +14,7 @@ class DashboardsController < ApplicationController
     @commerce_sale_chart = {general: @commerce_sales.sum {|sale| sale.total}, mes: @commerce_month_sales.sum{|sale| sale.total}, hoy: @commerce_today_sales.sum{|sale| sale.total}}
     @commerce_office_sales = {}
     @commerce_offices.each_with_index {|office, i| @commerce_office_sales[office.name] = office.workers.sum {|worker| worker.sales.sum {|sale| sale.total}}}
+
   end
 
   def commerce_kitchen

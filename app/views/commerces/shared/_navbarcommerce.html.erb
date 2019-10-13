@@ -1,4 +1,4 @@
-<div id="wrapper">
+<div id="wrapper" class="toggled">
   <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
       <br>
@@ -58,8 +58,17 @@
 
 <!-- Menu Toggle Script -->
 <script>
-    $(".menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
+    $(document).ready(function() {
+        $(".menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+
+        if($(document).width() > 600){
+            $('.container').on('click',function() {
+                if($("#wrapper").attr('class') == ""){
+                    $("#wrapper").attr('class', 'toggled');
+                }
+            })
+        }});
 </script>
