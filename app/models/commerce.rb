@@ -4,4 +4,5 @@ class Commerce < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :offices, dependent: :destroy
+  has_many :workers, dependent: :destroy
 end
