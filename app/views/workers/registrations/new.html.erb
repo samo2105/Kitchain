@@ -1,16 +1,17 @@
+<%= render 'commerces/shared/navbarcommerce' %>
 <br><br>
-<h1 class="text-center pb-2">Registro de trabajador</h1>
-<div class="card container p-3 w-75">
+<h1 class="text-center pb-2 text-white">Registro de trabajador</h1>
+<div class="card bg-info container p-3 w-75 text-white">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field form-group">
-  <%= f.label 'Nombre de empresa' %><br />
+  <%= f.label 'Nombre' %><br />
   <%= f.text_field :name, autofocus: true, class:'form-control'  %>
   </div>
 
   <div class="field form-group">
-    <%= f.label 'Rut de empresa' %><br />
+    <%= f.label 'Rut' %><br />
     <%= f.number_field :rol, autofocus: true, class:'form-control'  %>
   </div>
 
@@ -35,21 +36,21 @@
   </div>
 
   <div class="field form-group">
-    <%= f.label :password %>
+    <%= f.label 'Contraseña' %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(<%= @minimum_password_length %> caracteres mínimo)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password", class:'form-control'   %>
   </div>
 
   <div class="field form-group">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label 'Confirmar contraseña' %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class:'form-control'   %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Crear Trabajador", class:'btn btn-primary col-sm-12' %>
   </div>
 <% end %>
 </div>
-<%= render "workers/shared/links" %>
+<br>

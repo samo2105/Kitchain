@@ -1,6 +1,6 @@
 class OfficesController < ApplicationController
   before_action :set_office, only: [:show, :edit, :update, :destroy]
-  before_action: :authenticate_commerce!
+  before_action :authenticate_commerce!
   # GET /offices
   # GET /offices.json
   def index
