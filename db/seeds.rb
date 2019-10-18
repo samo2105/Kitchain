@@ -5,6 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
+
 Order.destroy_all
 Sale.destroy_all
 Product.destroy_all
@@ -13,13 +15,13 @@ Worker.destroy_all
 Office.destroy_all
 Commerce.destroy_all
 
-Commerce.create(name:'Example', rol: 99999999, number: 40167793, adress: 'Av. falsa 123', email:'example@mail.com', password: '123123', password_confirmation: '123123')
-3.times do |i|
-  Office.create(commerce_id: Commerce.last.id, name: "oficina #{i+1}", adress: 'Av. falsa 321', number: 40167793)
-  Worker.create(office_id: Office.last.id, name: "Trabajador #{i+1}", rol: (123456 + i), adress: "Av. falsa 32#{i}", admin: false, email: "worker#{i+1}@mail.com", password:'123123', password_confirmation: '123123', commerce_id: Commerce.last.id)
-  Table.create(size: i+1, description: "mesa para #{i+1}")
-  Product.create(name: "Producto #{i+1}", quantity: rand(100), price: 2000, office_id: Office.last.id)
-  Sale.create(worker_id: Worker.last.id, total: rand(10000), payed: false, comment: 'La mía sin queso', table_id: Table.last.id, office_id: Office.last.id, created_at: rand(1.years).seconds.ago, commerce_id: Commerce.last.id)
-  3.times {|i| Order.create(product_id: Product.all.sample.id, quantity: rand(1..5), sale_id: Sale.last.id, amount: rand(2000))}
-end
+Commerce.create(name:Faker::Company.name, rol: 99999999, number: 40167793, adress: 'Av. falsa 123', email:'example@mail.com', password: '123123', password_confirmation: '123123')
+
+  10.times {Office.create(commerce_id: Commerce.last.id, name: Faker::Company.name, adress: Faker::Address.street_address, number: 40167793)}
+  60.times {Worker.create(office_id: Office.all.sample.id, name: Faker::Name.name, rol: (123456), adress: Faker::Address.street_address, admin: false, email: Faker::Internet.email, password:'123123', password_confirmation: '123123', commerce_id: Commerce.last.id)}
+  5.times {Table.create(size: rand(0..10), description: Faker::Lorem.sentence)}
+  25.times {Product.create(name: Faker::Food.dish, quantity: rand(100), price: 2000, office_id: Office.all.sample.id)}
+  50.times {Sale.create(worker_id: Worker.all.sample.id, total: rand(10000), payed: false, comment: 'La mía sin queso', table_id: Table.last.id, office_id: Office.all.sample.id, created_at: rand(1.years).seconds.ago, commerce_id: Commerce.all.sample.id)}
+  100.times {Order.create(product_id: Product.all.sample.id, quantity: rand(1..5), sale_id: Sale.all.sample.id, amount: rand(2000))}
+
 Worker.create(office_id: Office.last.id, name: "Trabajador admin", rol: (1234567), adress: "Av. falsa 3295", admin: true, email: 'workeradmin@mail.com', password:'123123', password_confirmation: '123123')
