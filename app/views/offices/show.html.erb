@@ -11,13 +11,36 @@
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title"><b>Sucursal: <%= @office.name %> </b></h5>
-          <p class="card-text"> Dirección: <%= @office.adress %> <br> Número: +562<%= @office.number %> <br> Trabajadores: <%= @office.workers.count %></p>
-          <p class="card-text"><small class="text-muted">Editado hace <%= time_ago_in_words @office.updated_at %></small></p>
+          <h2 class="text-center">Sucursal: <%= @office.name %> </h2>
+          <div class="card-title row">
+          <div class="col-sm-6">
+            Dirección: <%= @office.adress %> <br> Número: +562<%= @office.number %> <br>
+          </div>
+          <div class="col-sm-6">
+            <table class="table p-0 m-0">
+              <thead>
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Ventas</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @office.workers.each do |worker| %>
+                <tr>
+                  <td><%= worker.name %></td>
+                  <td><%= worker.sales.count %></td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+            <hr>
+            <%= link_to 'Añadir Trabajador', new_worker_registration_path, class:'btn btn-success' %>
+          </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <p><%= link_to 'Back', offices_path, class:'btn btn-primary float-left col-sm-4' %> <%= link_to 'Edit', edit_office_path(@office), class:'btn btn-warning float-right col-sm-4' %></p>
+  <p><%= link_to 'Volver', offices_path, class:'btn btn-primary float-left col-sm-4' %> <%= link_to 'Edit', edit_office_path(@office), class:'btn btn-warning float-right col-sm-4' %></p>
 </div>
 <br>

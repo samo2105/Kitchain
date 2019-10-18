@@ -1,0 +1,15 @@
+<tr id="product_<%= product.id %>">
+  <td><%= product.name %></td>
+  <td><%= number_to_currency(product.price, precision: 0)  %></td>
+  <td><%= product.quantity %></td>
+  <th><%= product.office.name %></th>
+  <td><div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      ...
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <%= link_to 'Ver producto', product, class:'dropdown-item' %>
+      <%= link_to 'Eliminar', product, method: :delete, data: {confirm: '¿Estás seguro? Esta acción es irreversible y eliminará todos los datos de este producto', remote: true}, class:'dropdown-item' %>
+    </div>
+  </div></td>
+</tr>

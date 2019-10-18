@@ -10,7 +10,7 @@
       <br>
       <h2> Rendimiento de tus sucursales </h2>
       <hr>
-      <table class="table table-light">
+      <table class="table table-striped table-bordered table-sm dtBasicExample" cellspacing="0">
         <thead>
         <tr>
           <th scope="col">#</th>
@@ -21,13 +21,13 @@
         </tr>
         </thead>
         <tbody>
-          <% @commerce_offices.each do |office| %>
+          <% @offices.each do |office| %>
           <tr>
             <th scope="row"><%= office.id %></th>
             <td><%= office.name %></td>
             <td><%= office.workers.count %></td>
             <td><%= number_to_currency( office.workers.sum {|worker| worker.sales.sum {|sale| sale.total} }, precision: 0) %></td>
-            <td><%= number_to_percentage((((office.workers.sum {|worker| worker.sales.sum {|sale| sale.total}}).to_f / @commerce_sales.sum {|sale| sale.total})*100), precision: 0)  %></td>
+            <td><%= number_to_percentage((((office.sales.sum {|sale| sale.total}).to_f / @sales.sum {|sale| sale.total})*100), precision: 2)  %></td>
           </tr>
           <% end %>
         </tbody>
@@ -47,7 +47,7 @@
         <br>
       <h2> Ventas totales </h2>
         <hr>
-        <table class="table table-light">
+        <table class="table table-striped" cellspacing="0">
           <thead>
           <tr>
             <th scope="col">Ventas</th>
@@ -57,7 +57,7 @@
           <tbody>
           <tr>
             <th>General:</th>
-            <th><%=number_to_currency(@commerce_sales.sum {|sale| sale.total}, precision: 0) %></th>
+            <th><%=number_to_currency(@sales.sum {|sale| sale.total}, precision: 0) %></th>
           </tr>
           <tr>
             <th>Este Mes:</th>
@@ -75,7 +75,7 @@
         <br>
         <h2> Gráfico de ventas </h2>
         <hr>
-        <div class="p-4"><%= column_chart @commerce_sale_chart, prefix: "$", refresh: 60, messages: {empty: "No hay datos"}  %></div>
+        <div class="p-4"><%= bar_chart @commerce_sale_chart, prefix: "$", refresh: 30, messages: {empty: "No hay datos"}  %></div>
       </div>
     </div>
 
