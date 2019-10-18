@@ -75,7 +75,7 @@
         <br>
         <h2> Gráfico de ventas </h2>
         <hr>
-        <div class="p-4"><%= column_chart @commerce_sale_chart, prefix: "$", refresh: 60, messages: {empty: "No hay datos"}  %></div>
+        <div class="p-4"><%= bar_chart @commerce_office_sales, prefix: "$", refresh: 60, messages: {empty: "No hay datos"}  %></div>
       </div>
     </div>
 

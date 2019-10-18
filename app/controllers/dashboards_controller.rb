@@ -10,11 +10,11 @@ class DashboardsController < ApplicationController
     start_date = date.at_beginning_of_month
     end_date = date.at_end_of_month
     @commerce_month_sales = @commerce_sales.where(:created_at => start_date..end_date)
+    @commerce_year_sales = @commerce_sales.where(:created_at => date.at_beginning_of_year..date.at_end_of_year)
     @commerce_today_sales = @commerce_month_sales.where(created_at: date.at_beginning_of_day..date.at_end_of_day)
-    @commerce_sale_chart = {general: @commerce_sales.sum {|sale| sale.total}, mes: @commerce_month_sales.sum{|sale| sale.total}, hoy: @commerce_today_sales.sum{|sale| sale.total}}
+    @commerce_sale_chart = {general: @commerce_sales.sum {|sale| sale.total},   año: @commerce_year_sales.sum {|sale| sale.total}, mes: @commerce_month_sales.sum{|sale| sale.total}, hoy: @commerce_today_sales.sum{|sale| sale.total}}
     @commerce_office_sales = {}
-    @commerce_offices.each_with_index {|office, i| @commerce_office_sales[office.name] = office.workers.sum {|worker| worker.sales.sum {|sale| sale.total}}}
-
+    @commerce_offices.each {|office| @commerce_office_sales[office.name] = office.workers.sum {|worker| worker.sales.sum {|sale| sale.total}}}
   end
 
   def commerce_kitchen
