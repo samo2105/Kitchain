@@ -5,5 +5,5 @@ class Worker < ApplicationRecord
          :recoverable, :rememberable, :validatable
   belongs_to :office, optional: true
   belongs_to :commerce
-  has_many :sales, dependent: :destroy
+  has_many :sales, dependent: :nullify
 end

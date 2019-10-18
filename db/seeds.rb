@@ -19,7 +19,7 @@ Commerce.create(name:'Example', rol: 99999999, number: 40167793, adress: 'Av. fa
   Worker.create(office_id: Office.last.id, name: "Trabajador #{i+1}", rol: (123456 + i), adress: "Av. falsa 32#{i}", admin: false, email: "worker#{i+1}@mail.com", password:'123123', password_confirmation: '123123', commerce_id: Commerce.last.id)
   Table.create(size: i+1, description: "mesa para #{i+1}")
   Product.create(name: "Producto #{i+1}", quantity: rand(100), price: 2000, office_id: Office.last.id)
-  Sale.create(worker_id: Worker.last.id, total: rand(10000), payed: false, comment: 'La mía sin queso', table_id: Table.last.id, office_id: Office.last.id, created_at: rand(1.years).seconds.ago)
+  Sale.create(worker_id: Worker.last.id, total: rand(10000), payed: false, comment: 'La mía sin queso', table_id: Table.last.id, office_id: Office.last.id, created_at: rand(1.years).seconds.ago, commerce_id: Commerce.last.id)
   3.times {|i| Order.create(product_id: Product.all.sample.id, quantity: rand(1..5), sale_id: Sale.last.id, amount: rand(2000))}
 end
 Worker.create(office_id: Office.last.id, name: "Trabajador admin", rol: (1234567), adress: "Av. falsa 3295", admin: true, email: 'workeradmin@mail.com', password:'123123', password_confirmation: '123123')

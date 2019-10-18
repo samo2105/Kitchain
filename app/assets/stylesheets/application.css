@@ -235,3 +235,7 @@ p, ul li, ol li {
     position: unset;
 }
 
+.dataTables_wrapper{
+    position: unset;
+}
+

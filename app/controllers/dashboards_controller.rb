@@ -9,25 +9,25 @@ class DashboardsController < ApplicationController
     date = Date.today
     start_date = date.at_beginning_of_month
     end_date = date.at_end_of_month
-    @commerce_month_sales = @commerce_sales.where(:created_at => start_date..end_date)
-    @commerce_year_sales = @commerce_sales.where(:created_at => date.at_beginning_of_year..date.at_end_of_year)
+    @commerce_month_sales = @sales.where(:created_at => start_date..end_date)
+    @commerce_year_sales = @sales.where(:created_at => date.at_beginning_of_year..date.at_end_of_year)
     @commerce_today_sales = @commerce_month_sales.where(created_at: date.at_beginning_of_day..date.at_end_of_day)
-    @commerce_sale_chart = {general: @commerce_sales.sum {|sale| sale.total},   año: @commerce_year_sales.sum {|sale| sale.total}, mes: @commerce_month_sales.sum{|sale| sale.total}, hoy: @commerce_today_sales.sum{|sale| sale.total}}
+    @commerce_sale_chart = {general: @sales.sum {|sale| sale.total}, año: @commerce_year_sales.sum {|sale| sale.total}, mes: @commerce_month_sales.sum{|sale| sale.total}, hoy: @commerce_today_sales.sum{|sale| sale.total}}
     @commerce_office_sales = {}
-    @commerce_offices.each {|office| @commerce_office_sales[office.name] = office.workers.sum {|worker| worker.sales.sum {|sale| sale.total}}}
+    @offices.each {|office| @commerce_office_sales[office.name] = office.sales.sum {|sale| sale.total}}
   end
 
   def commerce_kitchen
-    @best_sale = @commerce_orders.group(:product_id).sum(:quantity)
+    @best_sale = @orders.group(:product_id).sum(:quantity)
     @best_sale_products = {}
     @best_sale.each do |k,v|
-      @best_sale_products[@commerce_products.find(k)] = v
+      @best_sale_products[@products.find(k)] = v
     end
     @best_sale_products = @best_sale_products.sort_by{|k, v| v}
     @best_sale_chart = @best_sale_products.map{|product, value| [product.name, value]}
     @best_offices_orders = {}
-    @commerce_offices.each do |office|
-      @best_offices_orders[office.name] = office.workers.sum {|worker| worker.sales.sum{|sale| sale.orders.count}}
+    @offices.each do |office|
+      @best_offices_orders[office.name] = office.sales.sum {|sale| sale.orders.count}
     end
   end
 
@@ -53,10 +53,10 @@ class DashboardsController < ApplicationController
 
   def find_commerce_params
     @commerce = current_commerce
-    @commerce_offices = @commerce.offices
-    @commerce_products = Product.where(office_id: @commerce_offices.ids)
-    @commerce_workers = Worker.where(office_id: @commerce_offices.ids)
-    @commerce_sales = Sale.where(worker_id: @commerce_workers.ids)
-    @commerce_orders = Order.where(sale_id: @commerce_sales.ids, product_id: @commerce_products.ids)
+    @offices = @commerce.offices
+    @products = Product.where(office_id: @offices.ids)
+    @workers = @commerce.workers
+    @sales = @commerce.sales
+    @orders = Order.where(sale_id: @sales.ids, product_id: @products.ids)
   end
 end

@@ -29,7 +29,7 @@ class OfficesController < ApplicationController
 
     respond_to do |format|
       if @office.save
-        format.html { redirect_to @office, notice: 'Office was successfully created.' }
+        format.html { redirect_to dashboards_commerce_path, notice: 'Office was successfully created.' }
         format.json { render :show, status: :created, location: @office }
       else
         format.html { render :new }
@@ -57,8 +57,9 @@ class OfficesController < ApplicationController
   def destroy
     @office.destroy
     respond_to do |format|
-      format.html { redirect_to offices_url, notice: 'Office was successfully destroyed.' }
+      format.html { redirect_to dashboards_commerce_path, notice: 'Office was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 

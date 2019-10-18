@@ -58,6 +58,7 @@ class WorkersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to workers_url, notice: 'Worker was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 

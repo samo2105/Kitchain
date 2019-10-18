@@ -6,11 +6,11 @@
   <br>
   <div class="row">
     <div class="col-sm-6">
-      <div class="card">
+      <div class="card p-3">
         <br>
-        <h2> Últimos productos agregados (5)</h2>
+        <h2> Tus Productos</h2>
         <br>
-        <table class="table">
+        <table class="table table-striped table-bordered table-sm dtBasicExample" cellspacing="0">
           <thead>
           <tr>
             <th scope="col">Producto</th>
@@ -20,14 +20,7 @@
           </tr>
           </thead>
           <tbody>
-          <% @commerce_products.max(5).each do |product| %>
-            <tr>
-              <td><%= product.name %></td>
-              <td><%= product.price %></td>
-              <td><%= product.quantity %></td>
-              <th><%= product.office.name %></th>
-            </tr>
-          <% end %>
+          <%= render @products %>
           </tbody>
         </table>
       </div>
@@ -38,7 +31,7 @@
         <br>
         <h2>Productos más vendido</h2>
         <hr>
-        <table class="table">
+        <table  class="table table-striped table-bordered table-sm dtBasicExample" cellspacing="0">
           <thead>
           <tr>
             <th scope="col">Producto</th>
@@ -47,10 +40,10 @@
           </tr>
           </thead>
           <tbody>
-          <% @best_sale_products.max(5).reverse_each do |product, value| %>
+          <% @best_sale_products.reverse_each do |product, value| %>
             <tr>
               <td><%= product.name %></td>
-              <td><%= product.price %></td>
+              <td>$<%= product.price %></td>
               <td><%= value %></td>
             </tr>
           <% end %>
@@ -71,9 +64,9 @@
     <div class="col-sm-6">
       <div class="card">
         <br>
-        <h2> Últimas órdenes (5)</h2>
+        <h2> Últimas órdenes</h2>
         <br>
-        <table class="table">
+        <table  class="table table-striped table-bordered table-sm dtBasicExample" cellspacing="0">
           <thead>
           <tr>
             <th scope="col">Trabajador</th>
@@ -83,10 +76,10 @@
           </tr>
           </thead>
           <tbody>
-        <% @commerce_orders.max(5).each do |order| %>
+        <% @orders.each do |order| %>
             <tr>
               <td><%= order.sale.worker.name %></td>
-              <td><%= order.amount %></td>
+              <td>$<%= order.amount %></td>
               <td><%= order.product.name %></td>
               <th><%= order.quantity %></th>
             </tr>

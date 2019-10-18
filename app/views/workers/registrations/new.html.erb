@@ -29,18 +29,20 @@
     <div class="field form-group">
       <%= f.label 'Empresa' %>
       <br>
-      <%= f.select :commerce_id, Commerce.where(id: current_commerce.id).pluck(:name, :id), worker_commerce_id: :id %>
+      <%= f.select :commerce_id, (if commerce_signed_in? then Commerce.where(id: current_commerce.id).pluck(:name, :id) else Commerce.where(id: current_worker.commerce.id).pluck(:name, :id) end), worker_commerce_id: :id %>
     </div>
 
     <div class="field form-group">
       <%= f.label 'Sucursal' %><br />
-      <%= f.select :office_id, Office.where(commerce_id: current_commerce.id).pluck(:name, :id), worker_office_id: :id, class:'form-control'  %>
+      <%= f.select :office_id, if commerce_signed_in? then current_commerce.offices.pluck(:name, :id) else current_worker.office(:name, :id) end, worker_office_id: :id, class:'form-control'  %>
     </div>
 
+    <% if commerce_signed_in? %>
     <div class="field form-group text-center">
       <%= f.label 'Admin' %><br />
       <%= f.check_box :admin, autofocus: true, class:'form-control'  %>
     </div>
+    <% end %>
 
     <div class="field form-group">
       <%= f.label :email %><br />

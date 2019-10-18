@@ -1,0 +1,16 @@
+<tr id="office_<%= office.id %>">
+  <td><%= office.name %></td>
+  <td><%= office.adress %></td>
+  <td><%= office.number %></td>
+  <td><%= office.workers.count %></td>
+  <td><div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      ...
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <%= link_to 'Ver sucursal', office, class:'dropdown-item' %>
+      <%= link_to 'Editar', edit_office_path(office), class:'dropdown-item' %>
+      <%= link_to 'Eliminar', office, method: :delete, data: {confirm: '¿Estás seguro? Esta acción es irreversible y eliminará todos los datos de esta oficina', remote: true}, class:'dropdown-item' %>
+    </div>
+  </div></td>
+</tr>
