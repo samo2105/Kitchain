@@ -1,0 +1,14 @@
+<tr id="worker_<%=worker.id %>">
+  <td><%= worker.name %></td>
+  <td><%= worker.adress %></td>
+  <td><%= worker.office.name if worker.office %></td>
+  <td><div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      ...
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <%= link_to 'Ver trabajador', worker, class:'dropdown-item' %>
+      <%= link_to 'Eliminar', worker, method: :delete, data: {confirm: '¿Estás seguro? Esta acción es irreversible y eliminará todos los datos de esta oficina', remote: true}, class:'dropdown-item' %>
+    </div>
+  </div></td>
+</tr>

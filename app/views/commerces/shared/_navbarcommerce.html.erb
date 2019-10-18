@@ -1,4 +1,4 @@
-<div id="wrapper">
+<div id="wrapper" class="toggled">
   <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
       <br>
@@ -15,7 +15,7 @@
         <%= link_to 'Cocina/Productos', dashboards_commerce_kitchen_path, class:'btn btn-danger text-left text-white col-lg-12 mt-1', id:'nav-side-button' %>
       </li>
       <li>
-        <%= link_to 'Métricas Generales', dashboards_commerce_generals_path, class:'btn btn-warning text-left text-white col-lg-12 mt-1', id:'nav-side-button' %>
+        <%= link_to 'Tiempo real', dashboards_commerce_generals_path, class:'btn btn-warning text-left text-white col-lg-12 mt-1', id:'nav-side-button' %>
       </li>
       <hr>
       <li>
@@ -58,8 +58,17 @@
 
 <!-- Menu Toggle Script -->
 <script>
-    $(".menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
+    $(document).ready(function() {
+        $(".menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+
+        if($(document).width() > 600){
+            $('.container').on('click',function() {
+                if($("#wrapper").attr('class') == ""){
+                    $("#wrapper").attr('class', 'toggled');
+                }
+            })
+        }});
 </script>

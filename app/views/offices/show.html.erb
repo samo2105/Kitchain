@@ -1,25 +1,46 @@
 <%= render 'commerces/shared/navbarcommerce' %>
 <br><br>
-
-<p>
-  <strong>Commerce:</strong>
-  <%= @office.commerce %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @office.name %>
-</p>
-
-<p>
-  <strong>Adress:</strong>
-  <%= @office.adress %>
-</p>
-
-<p>
-  <strong>Number:</strong>
-  <%= @office.number %>
-</p>
-
-<%= link_to 'Edit', edit_office_path(@office) %> |
-<%= link_to 'Back', offices_path %>
+<div class="container text-center card bg-info">
+  <br>
+  <h1 class="text-white">Ver sucursal</h1>
+  <hr>
+  <div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="https://dojiw2m9tvv09.cloudfront.net/4/product/sucursal9736.png" class="card-img img-thumbnail" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h2 class="text-center">Sucursal: <%= @office.name %> </h2>
+          <div class="card-title row">
+          <div class="col-sm-6">
+            Dirección: <%= @office.adress %> <br> Número: +562<%= @office.number %> <br>
+          </div>
+          <div class="col-sm-6">
+            <table class="table p-0 m-0">
+              <thead>
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Ventas</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @office.workers.each do |worker| %>
+                <tr>
+                  <td><%= worker.name %></td>
+                  <td><%= worker.sales.count %></td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+            <hr>
+            <%= link_to 'Añadir Trabajador', new_worker_registration_path, class:'btn btn-success' %>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p><%= link_to 'Volver', offices_path, class:'btn btn-primary float-left col-sm-4' %> <%= link_to 'Edit', edit_office_path(@office), class:'btn btn-warning float-right col-sm-4' %></p>
+</div>
+<br>

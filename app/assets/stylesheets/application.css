@@ -215,4 +215,27 @@ p, ul li, ol li {
     margin-bottom: 5px;
     padding-bottom: 10px;
 }
+.container{
+    position: unset;
+}
+.col-md-4 {
+    position: unset;
+}
+
+.col-sm-6{
+    position: unset;
+}
+.col-md-8{
+    position: unset;
+}
+.col-sm-12{
+    position: unset;
+}
+.col-sm-4{
+    position: unset;
+}
+
+.dataTables_wrapper{
+    position: unset;
+}
 

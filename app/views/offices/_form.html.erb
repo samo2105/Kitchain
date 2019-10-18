@@ -1,10 +1,8 @@
-<%= render 'commerces/shared/navbarcommerce' %>
-<br><br>
-<%= form_with(model: office, local: true) do |form| %>
+
+<%= form_with(model: office, local: true, class:'w-75 mx-auto text-white') do |form| %>
   <% if office.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(office.errors.count, "error") %> prohibited this office from being saved:</h2>
-
       <ul>
       <% office.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -13,27 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :commerce_id %>
-    <%= form.text_field :commerce_id %>
-  </div>
-
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class:'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :adress %>
-    <%= form.text_field :adress %>
+    <%= form.text_field :adress, class:'form-control'  %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :number %>
-    <%= form.text_field :number %>
+    <%= form.text_field :number, class:'form-control'  %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Enviar', class:'btn btn-primary col-sm-4' %>
   </div>
 <% end %>

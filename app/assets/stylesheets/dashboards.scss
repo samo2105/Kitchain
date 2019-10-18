@@ -4,24 +4,19 @@
 .card{
   position: unset;
 }
-.container{
-  position: unset;
-}
-.col-md-4 {
-  position: unset;
-}
-
-.col-sm-6{
-  position: unset;
-}
-.col-md-8{
-  position: unset;
-}
 
 .container img{
   width: 100%;
   height: 15vw;
   object-fit: cover;
+}
+
+@media (max-width: 768px){
+  .container img{
+    width: 100%;
+    height: 40vw;
+    object-fit: cover;
+  }
 }
 
 

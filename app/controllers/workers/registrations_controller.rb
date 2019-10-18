@@ -10,9 +10,9 @@ class Workers::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+   #def create
+   #  super
+   #end
 
   # GET /resource/edit
   # def edit
@@ -42,7 +42,7 @@ class Workers::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
    def configure_sign_up_params
-     devise_parameter_sanitizer.permit(:sign_up, keys: [:office_id, :name, :rol, :adress, :number, :admin])
+     devise_parameter_sanitizer.permit(:sign_up, keys: [:office_id, :name, :rol, :adress, :number, :admin, :commerce_id])
    end
 
   # If you have extra params to permit, append them to the sanitizer.

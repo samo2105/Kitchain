@@ -1,7 +1,15 @@
 <%= render 'commerces/shared/navbarcommerce' %>
 <br><br>
+<div class="container text-center card bg-info">
+  <br>
+  <h1 class="text-white">Editar sucursal</h1>
+  <hr>
 
-<%= render 'form', office: @office %>
-
-<%= link_to 'Show', @office %> |
-<%= link_to 'Back', offices_path %>
+  <%= render 'form', office: @office %>
+  <hr>
+  <p>
+    <%= link_to 'Ver oficina', @office, class:'btn btn-success col-sm-4 float-right p-1' %>
+    <%= link_to 'Volver', :back, class:'btn btn-primary col-sm-4 float-left p-1' %>
+  </p>
+</div>
+<br>

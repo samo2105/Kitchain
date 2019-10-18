@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_09_032526) do
+ActiveRecord::Schema.define(version: 2019_10_18_152813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,13 +63,17 @@ ActiveRecord::Schema.define(version: 2019_10_09_032526) do
   end
 
   create_table "sales", force: :cascade do |t|
-    t.bigint "worker_id"
     t.integer "total"
     t.boolean "payed", default: false
     t.text "comment"
     t.bigint "table_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "office_id"
+    t.bigint "commerce_id"
+    t.bigint "worker_id"
+    t.index ["commerce_id"], name: "index_sales_on_commerce_id"
+    t.index ["office_id"], name: "index_sales_on_office_id"
     t.index ["table_id"], name: "index_sales_on_table_id"
     t.index ["worker_id"], name: "index_sales_on_worker_id"
   end
@@ -82,7 +86,6 @@ ActiveRecord::Schema.define(version: 2019_10_09_032526) do
   end
 
   create_table "workers", force: :cascade do |t|
-    t.bigint "office_id"
     t.string "name"
     t.integer "rol"
     t.string "adress"
@@ -95,6 +98,9 @@ ActiveRecord::Schema.define(version: 2019_10_09_032526) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.bigint "commerce_id"
+    t.bigint "office_id"
+    t.index ["commerce_id"], name: "index_workers_on_commerce_id"
     t.index ["email"], name: "index_workers_on_email", unique: true
     t.index ["office_id"], name: "index_workers_on_office_id"
     t.index ["reset_password_token"], name: "index_workers_on_reset_password_token", unique: true
@@ -105,6 +111,5 @@ ActiveRecord::Schema.define(version: 2019_10_09_032526) do
   add_foreign_key "orders", "sales"
   add_foreign_key "products", "offices"
   add_foreign_key "sales", "tables"
-  add_foreign_key "sales", "workers"
-  add_foreign_key "workers", "offices"
+  add_foreign_key "workers", "commerces"
 end
