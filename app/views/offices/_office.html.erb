@@ -1,3 +1,4 @@
+<% if current_page?(controller: 'dashboards', action: 'commerce_index') %>
 <tr id="office_<%= office.id %>">
   <td><%= office.name %></td>
   <td><%= office.adress %></td>
@@ -14,3 +15,11 @@
     </div>
   </div></td>
 </tr>
+<% else %>
+  <div class="container">
+  <div class="card">
+    <%= office.name %>
+    <%= number_to_currency( office.sales.sum {|sale| sale.total}, precision: 0) %>
+  </div>
+  </div>
+<% end %>

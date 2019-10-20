@@ -5,4 +5,11 @@ $(document).on('ready turbolinks:load', function () {
     ]}
     );
     $('.dataTables_length').addClass('bs-select');
+    setInterval(function () {
+        $.ajax({
+            url: '/dashboards/commerce_generals',
+            type: 'GET',
+            dataType: 'script'
+        })
+    }, 5000)
 });

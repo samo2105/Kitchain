@@ -2,27 +2,54 @@
 <br><br>
 <div class="container card bg-info text-center">
   <br>
-  <h1 class="text-white"> Tu Dashboard</h1>
+  <h1 class="text-white"> Tiempo Real</h1>
   <br>
   <div class="row">
     <div class="col-sm-4">
-      <p> Últimas Ventas</p>
-      <ul>
-      </ul>
+      <div class="card">
+        <br>
+        <h2> Ventas </h2>
+        <hr>
+        <div id="realsales">
+          <%= render @sales.max(5) %>
+        </div>
+        <br>
+      </div>
     </div>
     <div class="col-sm-4">
-      <p> Ventas por oficina</p>
+      <div class="card">
+        <br>
+        <h2> Ordenes</h2>
+        <hr>
+        <div id="realorders"></div>
+        <br>
+      </div>
+
     </div>
     <div class="col-sm-4">
-      <p> Últimas Ventas</p>
+      <div class="card">
+        <br>
+        <h2> Ventas por Sucursal</h2>
+        <hr>
+        <div id="realoffices"></div>
+        <br>
+      </div>
+
     </div>
   </div>
+  <br>
   <div class="row">
     <div class="col-sm-6">
-      <p> Hola </p>
+      <div class="card">
+        <h2> Hola </h2>
+      </div>
+
     </div>
     <div class="col-sm-6">
-      <p> Hola </p>
+      <div class="card">
+        <h2> Hola </h2>
+      </div>
+
     </div>
   </div>
 </div>
