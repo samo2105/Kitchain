@@ -18,8 +18,13 @@
 <% else %>
   <div class="container">
   <div class="card">
-    <%= office.name %>
-    <%= number_to_currency( office.sales.sum {|sale| sale.total}, precision: 0) %>
+    <b>Nombre: <%= office.name %></b>
+    <p>
+      Total: <%= number_to_currency(office.sales.sum {|sale| sale.total}, precision: 0) %>
+      - Año: <%= number_to_currency(Office.find_year_sales(office).sum {|sale| sale.total}) %>
+      - Mes: <%= number_to_currency(Office.find_month_sales(office).sum {|sale| sale.total}) %>
+      - Hoy: <%= number_to_currency(Office.find_today_sales(office).sum {|sale| sale.total}) %>
+    </p>
   </div>
   </div>
 <% end %>
