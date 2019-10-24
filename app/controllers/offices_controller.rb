@@ -10,6 +10,7 @@ class OfficesController < ApplicationController
   # GET /offices/1
   # GET /offices/1.json
   def show
+    @workers = @office.workers
   end
 
   # GET /offices/new
@@ -31,6 +32,7 @@ class OfficesController < ApplicationController
       if @office.save
         format.html { redirect_to dashboards_commerce_path, notice: 'Office was successfully created.' }
         format.json { render :show, status: :created, location: @office }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @office.errors, status: :unprocessable_entity }
@@ -43,8 +45,9 @@ class OfficesController < ApplicationController
   def update
     respond_to do |format|
       if @office.update(office_params)
-        format.html { redirect_to @office, notice: 'Office was successfully updated.' }
+        format.html { redirect_to dashboards_commerce_path, alert: 'La sucursal fue actualizada exitosamente' }
         format.json { render :show, status: :ok, location: @office }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @office.errors, status: :unprocessable_entity }
