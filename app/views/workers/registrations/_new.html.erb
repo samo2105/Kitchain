@@ -1,8 +1,4 @@
-<%= render 'commerces/shared/navbarcommerce' %>
-<br><br>
-<h1 class="text-center pb-2 text-white">Registro de trabajador</h1>
-<div class="card bg-info container p-3 w-75 text-white">
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+ <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="field form-group">
@@ -29,7 +25,7 @@
     <div class="field form-group">
       <%= f.label 'Empresa' %>
       <br>
-      <%= f.select :commerce_id, (if commerce_signed_in? then Commerce.where(id: current_commerce.id).pluck(:name, :id) else Commerce.where(id: current_worker.commerce.id).pluck(:name, :id) end), worker_commerce_id: :id %>
+      <%= f.select :commerce_id, (if commerce_signed_in? then Commerce.where(id: current_commerce.id).pluck(:name, :id) else Commerce.where(id: current_worker.commerce.id).pluck(:name, :id) end), {required: 'true', autofocus: 'true', class: 'form-control'}, worker_commerce_id: :id  %>
     </div>
 
     <div class="field form-group">
@@ -66,7 +62,3 @@
       <%= f.submit "Crear Trabajador", class:'btn btn-primary col-sm-12' %>
     </div>
   <% end %>
-</div>
-<br>
-
-<%= link_to "Back", :back, class:'btn btn-primary col-sm-4' %>

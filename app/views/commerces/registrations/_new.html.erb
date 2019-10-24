@@ -1,6 +1,4 @@
-<br><br>
-<h1 class="text-center pb-2 text-white">Registro de empresa</h1>
-<div class="card container p-3 w-75">
+<div class="card container p-3">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -47,4 +45,3 @@
     </div>
   <% end %>
 </div>
-<%= render "commerces/shared/links" %>
