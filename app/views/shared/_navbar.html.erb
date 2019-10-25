@@ -29,8 +29,8 @@
              <%= link_to 'Salir', destroy_worker_session_path, class:'dropdown-item', method: :delete %>
           <% else %>
              <%= link_to 'Registro Empresa', new_commerce_registration_path, data:{remote: true}, class:'dropdown-item' %>
-             <%= link_to 'Acceso Empresa', new_commerce_session_path, class:'dropdown-item' %>
-             <%= link_to 'Acceso Trabajador', new_worker_session_path, class:'dropdown-item' %>
+             <%= link_to 'Acceso Empresa', new_commerce_session_path, data: {remote: true}, class:'dropdown-item' %>
+             <%= link_to 'Acceso Trabajador', new_worker_session_path, data: {remote: true}, class:'dropdown-item' %>
           <% end %>
         </div>
       </li>
