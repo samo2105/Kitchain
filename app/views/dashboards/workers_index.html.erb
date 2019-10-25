@@ -1,2 +1,67 @@
-<h1>Dashboards#workers_index</h1>
-<p>Find me in app/views/dashboards/workers_index.html.erb</p>
+<%= render 'workers/shared/navbarworker' %>
+<br><br>
+<div class="container">
+  <div class="card">
+    <br>
+    <h1 class="text-center"> Bienvenid@ <%= @worker.name %> </h1>
+    <hr>
+    <div class="row text-center">
+      <div class="col-sm-6">
+        <h4>Mis datos</h4>
+        <%= image_tag('https://definicionde.es/wp-content/uploads/2019/04/definicion-de-persona-min.jpg', class:'img-thumbnail') %>
+        <div class="row">
+          <div class="col-sm-6 text-center pl-4">
+            Nombre: <%= @worker.name %> <br>
+            Email: <%= @worker.email %> <br>
+            Ventas este mes: <%= @worker_month_sales.count %> | $<%= @worker_month_sales.sum {|sale| sale.total} %>
+          </div>
+          <div class="col-sm-6">
+            <%= link_to 'Editar perfil', edit_worker_registration_path, data: {remote: true} %><br>
+            <%= link_to 'Ventas', dashboards_workers_sales_path %> <br>
+            <%= link_to 'Cocina', dashboards_workers_kitchen_path %>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-sm-6">
+        <h4> Últimas Ventas </h4>
+        <% @worker.sales.order(created_at: :desc).max(5).each do |sale| %>
+          <div class="card">
+            Total: <%= number_to_currency(sale.total, precision: 0)  %> |
+            Productos: <% sale.products.each do |product| %>
+              <%= product.name %> -
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <hr>
+    <div class="row p-3">
+      <div class="col-sm-4 text-center">
+        <h3 class="text-center">Empresa: <%= @commerce.name %></h3>
+        <%= image_tag('http://comunidad.iebschool.com/iebs/files/2015/04/employer-branding.png') %>
+        Dirección: <%= @commerce.adress %> <br>
+        Trabajadores: <%= @commerce.workers.count %> <br>
+        Sucursales: <%= @commerce.offices.count %>
+      </div>
+
+      <div class="col-sm-4 text-center">
+        <h3 class="text-center"><%= @office.name %></h3>
+        <%= image_tag('https://cdn.shopify.com/s/files/1/0360/9813/files/Untitled-1-08_c5cd3da8-efef-4641-9a62-183077766342.jpg?v=1494396790') %>
+        Dirección: <%= @office.adress %> <br>
+        Trabajadores: <%= @office.workers.count %> <br>
+        Ventas: <%= @office.sales.count %>
+      </div>
+
+      <div class="col-sm-4 text-center">
+        <h3 class="text-center">Productos: <%= @products.count %></h3>
+        <%= image_tag('https://images.clarin.com/2018/11/19/IOjeiwK-3_1256x620__1.jpg') %>
+        Dirección: <%= @commerce.adress %> <br>
+        Trabajadores: <%= @commerce.workers.count %> <br>
+        Sucursales: <%= @commerce.offices.count %>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+

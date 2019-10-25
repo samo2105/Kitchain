@@ -1,0 +1,77 @@
+<div id="wrapper" class="toggled">
+  <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <br>
+      <li class="sidebar-brand text-center text-white">
+        <h3 class="bg-info pl-5">Kitchain</h3>
+      </li>
+      <li>
+        <%= link_to 'Dashboard', dashboards_workers_path, class:'btn btn-info text-left text-white col-lg-12 mt-1', id:'nav-side-button'%>
+      </li>
+      <li>
+        <%= link_to 'Ventas', dashboards_workers_sales_path, class:'btn btn-info text-left text-white col-lg-12 mt-1', id:'nav-side-button' %>
+      </li>
+      <li>
+        <%= link_to 'Productos', dashboards_workers_products_path, class:'btn btn-info text-left text-white col-lg-12 mt-1', id:'nav-side-button' %>
+      </li>
+      <li>
+        <%= link_to 'Cocina', dashboards_workers_kitchen_path, class:'btn btn-info text-left text-white col-lg-12 mt-1', id:'nav-side-button' %>
+      </li>
+      <li>
+        <%= link_to 'Mesas', dashboards_workers_tables_path, class:'btn btn-info text-left text-white col-lg-12 mt-1', id:'nav-side-button' %>
+      </li>
+      <hr>
+      <li>
+        <a href='#menu-toggle' class="btn btn-primary menu-toggle  text-left  text-white col-lg-12" id="nav-side-button">Ocultar menú</a>
+      </li>
+      <hr>
+      <li>
+        <h5 class="text-white text-center">
+          <%= current_worker.name %>
+        </h5>
+      </li>
+      <li>
+        <%= image_tag('http://www.unfv.edu.pe/facultades/fiei/images/cono_a.png', style:'height: 15vh; width: 15vh; margin-left: 25%', class:'img-thumbnail') %>
+      </li>
+      <br>
+      <li>
+        <h5 class="text-white">
+          <%= link_to 'Editar Perfil', edit_worker_registration_path, data: {remote: true}, class:'btn btn-light col-sm-12 text-left p-1', id:'nav-side-button'  %>
+        </h5>
+      </li>
+      <li>
+        <h5 class="text-white text-center">
+          <%= link_to 'Salir', destroy_worker_session_path, method: :delete, class:'btn btn-light col-sm-12  text-left p-1', id:'nav-side-button'  %>
+        </h5>
+      </li>
+    </ul>
+  </div>
+
+  <!-- /#sidebar-wrapper -->
+
+  <!-- Page Content -->
+  <!-- /#page-content-wrapper -->
+
+</div>
+
+<div class="sticky">
+  <a href='#menu-toggle' class="btn btn-success menu-toggle pl-5 pr-5 ml-3">Menú</a>
+</div>
+<!-- /#wrapper -->
+
+<!-- Menu Toggle Script -->
+<script>
+    $(document).ready(function() {
+        $(".menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+
+        if($(document).width() > 600){
+            $('.container').on('click',function() {
+                if($("#wrapper").attr('class') == ""){
+                    $("#wrapper").attr('class', 'toggled');
+                }
+            })
+        }});
+</script>
