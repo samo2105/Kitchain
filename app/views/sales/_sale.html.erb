@@ -1,0 +1,14 @@
+
+<div class="container" style="min-width: 107px">
+  <div class="card">
+    <b>Sucursal: <%= sale.office.name %></b>
+    <small>
+      <b>Trabajador: </b><%= sale.worker.name %>
+      <b>Total: </b><%= number_to_currency(sale.total, precision: 0)  %>
+      <b>Productos: </b>
+      <% sale.orders.each do |order| %>
+        <%= order.quantity %> <%= order.product.name %>  |
+      <% end %>
+    </small>
+  </div>
+</div>

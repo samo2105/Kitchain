@@ -1,3 +1,4 @@
+<% if current_page?(controller: 'dashboards', action: 'commerce_index') %>
 <tr id="office_<%= office.id %>">
   <td><%= office.name %></td>
   <td><%= office.adress %></td>
@@ -8,9 +9,22 @@
       ...
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <%= link_to 'Ver sucursal', office, class:'dropdown-item' %>
-      <%= link_to 'Editar', edit_office_path(office), class:'dropdown-item' %>
+      <%= link_to 'Ver sucursal', office,data: {remote: true}, class:'dropdown-item' %>
+      <%= link_to 'Editar', edit_office_path(office),data: {remote: true}, class:'dropdown-item' %>
       <%= link_to 'Eliminar', office, method: :delete, data: {confirm: '¿Estás seguro? Esta acción es irreversible y eliminará todos los datos de esta oficina', remote: true}, class:'dropdown-item' %>
     </div>
   </div></td>
 </tr>
+<% else %>
+  <div class="container">
+  <div class="card">
+    <b>Nombre: <%= office.name %></b>
+    <p>
+      Total: <%= number_to_currency(office.sales.sum {|sale| sale.total}, precision: 0) %>
+      - Año: <%= number_to_currency(Office.find_year_sales(office).sum {|sale| sale.total}) %>
+      - Mes: <%= number_to_currency(Office.find_month_sales(office).sum {|sale| sale.total}) %>
+      - Hoy: <%= number_to_currency(Office.find_today_sales(office).sum {|sale| sale.total}) %>
+    </p>
+  </div>
+  </div>
+<% end %>

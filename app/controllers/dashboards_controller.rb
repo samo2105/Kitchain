@@ -59,4 +59,12 @@ class DashboardsController < ApplicationController
     @sales = @commerce.sales
     @orders = Order.where(sale_id: @sales.ids, product_id: @products.ids)
   end
+
+  def find_worker_params
+    @commerce = current_worker.commerce
+    @office = current_worker.office
+    @products = @office.products
+    @sales = @office.sales
+    @orders = @sales.orders
+  end
 end
