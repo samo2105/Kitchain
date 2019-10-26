@@ -1,7 +1,7 @@
 <div class="container">
 <div class="card">
   <%= number_to_currency(order.amount, precision: 0)  %> -
-  <%= order.product.name %> -
+  <%= order.product.name if order.product %> -
   Unidades: <%= order.quantity %>
 </div>
 </div>
