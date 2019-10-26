@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Commerces::RegistrationsController < Devise::RegistrationsController
+  skip_authorization_check
    respond_to :html, :js
    before_action :configure_sign_up_params, only: [:create]
    before_action :configure_account_update_params, only: [:update]

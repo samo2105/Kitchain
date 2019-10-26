@@ -1,5 +1,5 @@
 class WorkersController < ApplicationController
-  before_action :set_worker, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /workers
   # GET /workers.json
@@ -42,8 +42,9 @@ class WorkersController < ApplicationController
   def update
     respond_to do |format|
       if @worker.update(worker_params)
-        format.html { redirect_to @worker, notice: 'Worker was successfully updated.' }
+        format.html { redirect_to request.referrer, notice: 'El trabajador de ha actualizado exitosamente' }
         format.json { render :show, status: :ok, location: @worker }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @worker.errors, status: :unprocessable_entity }
