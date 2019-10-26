@@ -2,6 +2,7 @@ class DashboardsController < ApplicationController
   before_action :authenticate_commerce!, only: [:commerce_index, :commerce_sales, :commerce_kitchen, :commerce_generals]
   before_action :authenticate_worker!, only: [:workers_index, :workers_kitchen, :workers_sales, :workers_products, :workers_tables]
   before_action :find_commerce_params, only: [:commerce_index, :commerce_sales, :commerce_kitchen, :commerce_generals]
+  before_action :find_worker_params, only: [:workers_index, :workers_kitchen, :workers_products, :workers_sales, :workers_tables]
   def commerce_index
   end
 
@@ -35,6 +36,7 @@ class DashboardsController < ApplicationController
   end
 
   def workers_index
+    @worker_month_sales = @worker.sales.where(created_at: Date.today.at_beginning_of_month..Date.today.at_end_of_month)
   end
 
   def workers_kitchen
@@ -58,5 +60,14 @@ class DashboardsController < ApplicationController
     @workers = @commerce.workers
     @sales = @commerce.sales
     @orders = Order.where(sale_id: @sales.ids, product_id: @products.ids)
+  end
+
+  def find_worker_params
+    @worker = current_worker
+    @commerce = current_worker.commerce
+    @office = current_worker.office
+    @products = @office.products
+    @sales = @office.sales
+    @orders = @sales.orders
   end
 end

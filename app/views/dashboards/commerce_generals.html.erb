@@ -2,28 +2,55 @@
 <br><br>
 <div class="container card bg-info text-center">
   <br>
-  <h1 class="text-white"> Tu Dashboard</h1>
+  <h1 class="text-white"> Tiempo Real</h1>
   <br>
   <div class="row">
-    <div class="col-sm-4">
-      <p> Últimas Ventas</p>
-      <ul>
-      </ul>
+    <div class="col-sm-6">
+      <div class="card">
+        <br>
+        <h2> Ventas </h2>
+        <hr>
+        <div id="realsales">
+          <%= render @sales.max(6) %>
+        </div>
+        <br>
+      </div>
     </div>
-    <div class="col-sm-4">
-      <p> Ventas por oficina</p>
-    </div>
-    <div class="col-sm-4">
-      <p> Últimas Ventas</p>
+    <div class="col-sm-6">
+      <div class="card">
+        <br>
+        <h2> Ordenes</h2>
+        <hr>
+        <div id="realorders">
+          <%= render @orders.order(created_at: :desc).max(15) %>
+        </div>
+        <br>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <p> Hola </p>
-    </div>
-    <div class="col-sm-6">
-      <p> Hola </p>
+  <br>
+  <div class="">
+    <div class="card">
+      <br>
+      <h2> Ventas por Sucursal</h2>
+      <hr>
+      <div id="realoffices">
+        <%= render @offices %>
+      </div>
+      <br>
     </div>
   </div>
 </div>
+
+<script type="application/javascript">
+    $(document).on('ready turbolinks:load', function () {
+        setInterval(function () {
+            $.ajax({
+                url: '/dashboards/commerce_generals',
+                type: 'GET',
+                dataType: 'script'
+            })
+        }, 5000)
+    });
+</script>
 
