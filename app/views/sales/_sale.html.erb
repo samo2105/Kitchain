@@ -1,9 +1,7 @@
-
-<div class="container" style="min-width: 107px">
-  <div class="card">
-    <b>Sucursal: <%= sale.office.name if sale.office %></b>
+<% if current_page?(dashboards_workers_sales_path) %>
+<div class="container">
+  <div class="card" style="min-width: 107px">
     <small>
-      <b>Trabajador: </b><%= sale.worker.name %>
       <b>Total: </b><%= number_to_currency(sale.total, precision: 0)  %>
       <b>Productos: </b>
       <% sale.orders.each do |order| %>
@@ -12,3 +10,18 @@
     </small>
   </div>
 </div>
+<% else %>
+  <div class="container" style="min-width: 107px">
+    <div class="card">
+      <b>Sucursal: <%= sale.office.name if sale.office %></b>
+      <small>
+        <b>Trabajador: </b><%= sale.worker.name %>
+        <b>Total: </b><%= number_to_currency(sale.total, precision: 0)  %>
+        <b>Productos: </b>
+        <% sale.orders.each do |order| %>
+          <%= order.quantity %> <%= order.product.name %>  |
+        <% end %>
+      </small>
+    </div>
+  </div>
+<% end %>

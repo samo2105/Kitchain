@@ -69,7 +69,7 @@ class DashboardsController < ApplicationController
     @commerce = current_worker.commerce
     @office = current_worker.office
     @products = @office.products
-    @sales = @office.sales
+    @sales = @worker.sales
     @orders = @sales.orders
     @tables = @office.tables
   end

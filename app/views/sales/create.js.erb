@@ -1,1 +1,14 @@
-$('#sales').append('<%= j render @sale %>')
+$('#sales').append('<div class="container">\n' +
+    '  <div class="card" style="min-width: 107px">\n' +
+    '    <small>\n' +
+    '      <b>Total: </b><%= number_to_currency(@sale.total, precision: 0)  %>\n' +
+    '      <b>Productos: </b>\n' +
+    '      <% @sale.orders.each do |order| %>\n' +
+    '        <%= order.quantity %> <%= order.product.name %>  |\n' +
+    '      <% end %>\n' +
+    '    </small>\n' +
+    '  </div>\n' +
+    '</div>');
+$('#ModalLabel').html("Agregar productos a venta")
+$('.modal-body').html("<%= j render 'products/index' %>");
+$('#Modal').modal('show');

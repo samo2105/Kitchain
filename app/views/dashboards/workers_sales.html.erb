@@ -7,27 +7,14 @@
     <hr>
     <div class="row text-center">
       <div class="col-sm-6">
-        <%= form_with(model: @sale, local: true) do |form| %>
-
-          <div class="field">
-            <%= form.label 'Mesa*' %>
-            <%= form.select :table_id, @tables.pluck(:description, :id), sale_table_id: :id%>
-          </div>
-
-          <div class="actions">
-            <%= form.submit 'Crear venta', class:'col-sm-10 btn btn-primary mx-auto', data: {remote: true} %>
-          </div>
-        <% end %>
+        <h2> Crear nueva venta</h2>
+        <%= render 'sales/new' %>
       </div>
 
       <div class="col-sm-6">
-        <h1> Ventas Activas </h1>
+        <h2> Ventas Activas </h2>
         <div id="sales">
-          <% @worker.sales.each do |sale| %>
-            <% if not sale.payed? %>
-              <%= render sale %>
-            <% end %>
-          <% end %>
+          <%= render @sales.where(payed: false) %>
         </div>
       </div>
     </div>
