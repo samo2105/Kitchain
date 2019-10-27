@@ -25,15 +25,18 @@ class SalesController < ApplicationController
   # POST /sales.json
   def create
     @sale = Sale.new(sale_params)
+    @sale.worker = current_worker
+    @sale.office = current_worker.office
     if worker_signed_in?
-      @sale.commerce = current_worker.commerce.id
+      @sale.commerce = current_worker.commerce
     else
       @sale.commerce = current_commerce.id
     end
     respond_to do |format|
       if @sale.save
-        format.html { redirect_to @sale, notice: 'Sale was successfully created.' }
+        format.html { redirect_to request.referrer, notice: 'Sale was successfully created.' }
         format.json { render :show, status: :created, location: @sale }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @sale.errors, status: :unprocessable_entity }

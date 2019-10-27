@@ -47,6 +47,7 @@ class DashboardsController < ApplicationController
   end
 
   def workers_sales
+    @sale = Sale.new
   end
 
   def workers_tables
@@ -70,5 +71,6 @@ class DashboardsController < ApplicationController
     @products = @office.products
     @sales = @office.sales
     @orders = @sales.orders
+    @tables = @office.tables
   end
 end

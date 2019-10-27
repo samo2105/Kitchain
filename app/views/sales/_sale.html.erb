@@ -1,7 +1,7 @@
 
 <div class="container" style="min-width: 107px">
   <div class="card">
-    <b>Sucursal: <%= sale.office.name %></b>
+    <b>Sucursal: <%= sale.office.name if sale.office %></b>
     <small>
       <b>Trabajador: </b><%= sale.worker.name %>
       <b>Total: </b><%= number_to_currency(sale.total, precision: 0)  %>

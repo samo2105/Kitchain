@@ -3,6 +3,7 @@ class Office < ApplicationRecord
   has_many :workers, dependent: :nullify
   has_many :sales, dependent: :nullify
   has_many :products, dependent: :destroy
+  has_many :tables, dependent: :destroy
 
   def self.find_month_sales(office)
     date = Date.today
