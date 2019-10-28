@@ -20,12 +20,16 @@
   </div>
 <script type="application/javascript">
     $(document).on('ready turbolinks:load', function () {
-        setInterval(function () {
-            $.ajax({
-                url: '/dashboards/workers_sales',
-                type: 'GET',
-                dataType: 'script'
-            })
-        }, 5000)
+        workersale = setInterval(function () {
+            if(window.location.pathname == "/dashboards/workers_sales"){
+                $.ajax({
+                    url: '/dashboards/workers_sales',
+                    type: 'GET',
+                    dataType: 'script'
+                });
+            } else {
+                clearInterval(workersale)
+            }
+            }, 1000)
     });
 </script>
