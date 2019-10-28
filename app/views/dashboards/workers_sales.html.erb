@@ -5,18 +5,27 @@
     <br>
     <h1 class="text-center"> Tu Dashboard </h1>
     <hr>
-    <div class="row text-center">
-      <div class="col-sm-6">
+      <div class="text-center">
         <h2> Crear nueva venta</h2>
         <%= render 'sales/new' %>
       </div>
 
-      <div class="col-sm-6">
+      <div class="text-center">
         <h2> Ventas Activas </h2>
         <div id="sales">
-          <%= render @sales.where(payed: false) %>
+          <%= render @sales.where(state: [1,2]) %>
         </div>
       </div>
     </div>
   </div>
-</div>
+<script type="application/javascript">
+    $(document).on('ready turbolinks:load', function () {
+        setInterval(function () {
+            $.ajax({
+                url: '/dashboards/workers_sales',
+                type: 'GET',
+                dataType: 'script'
+            })
+        }, 5000)
+    });
+</script>

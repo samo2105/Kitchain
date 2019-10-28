@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'orders/create'
-  get 'orders/delete'
+resources :orders, only: [:create]
+  delete 'orders/:id', to: 'orders#delete', as: 'delete_order'
   get 'dashboards/commerce', to: 'dashboards#commerce_index'
   get 'dashboards/commerce_sales'
   get 'dashboards/commerce_kitchen'

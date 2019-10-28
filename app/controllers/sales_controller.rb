@@ -50,6 +50,7 @@ class SalesController < ApplicationController
       if @sale.update(sale_params)
         format.html { redirect_to @sale, notice: 'Sale was successfully updated.' }
         format.json { render :show, status: :ok, location: @sale }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @sale.errors, status: :unprocessable_entity }

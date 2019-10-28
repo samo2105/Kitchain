@@ -22,6 +22,14 @@ class OrdersController < ApplicationController
     end
 
   def delete
+    @sale = @order.sale
+    @sale.total -= @order.amount
+    @sale.save
+    @product = @order.product
+    quantity = @product.quantity.to_i
+    quantity += @order.quantity
+    @product.quantity = quantity.to_s
+    @product.save
     @order.destroy
     respond_to do |format|
       format.js

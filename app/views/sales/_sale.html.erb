@@ -1,15 +1,31 @@
-<% if current_page?(dashboards_workers_sales_path) %>
+<% if current_worker %>
 <div class="container">
-  <div class="card" style="min-width: 107px">
+  <div class="card" style="min-height: 5vh">
     <small>
       <b>Total: </b><%= number_to_currency(sale.total, precision: 0)  %>
+      <b>Pagado: </b><%= if sale.payed? then 'Si' else 'No' end %>
       <b>Productos: </b>
       <% sale.orders.each do |order| %>
-        <%= order.quantity %> <%= order.product.name %>  |
+        <%= order.quantity %> <%= order.product.name %> <%= link_to 'x', delete_order_path(order.id), method: :delete, data: {remote: true}, style:'color: red'  %>  |
       <% end %>
+      <% case sale.state %>
+      <% when 1 %>
+        <div class="alert alert-primary p-0 w-25 d-inline">
+          Pedido solicitado
+        </div>
+      <% when 2 %>
+        <div class="alert alert-success">
+          Pedido listo
+        </div>
+      <% end %>
+      <div class="card d-inline">
+        | <b>Comentario: </b><%= sale.comment %>
+      </div>
+      <%= link_to 'Ver venta', sale,data: {remote: true}, class:'alert alert-success w-25 p-0 d-inline'  %>
     </small>
   </div>
 </div>
+  <div class="p-1"></div>
 <% else %>
   <div class="container" style="min-width: 107px">
     <div class="card">
