@@ -240,7 +240,16 @@ p, ul li, ol li {
     position: unset;
 }
 
+.col-sm-10{
+    position: unset;
+}
+
+
 .dataTables_wrapper{
+    position: unset;
+}
+
+.alert {
     position: unset;
 }
 

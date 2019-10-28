@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  patch 'payed/:id', to: 'sale_updates#payed', as: 'payed'
+  patch 'given/:id', to: 'sale_updates#given', as: 'given'
+  patch 'ready/:id', to: 'sale_updates#ready', as: 'ready'
+  patch 'done/:id', to: 'sale_updates#done', as: 'done'
 resources :orders, only: [:create]
   delete 'orders/:id', to: 'orders#delete', as: 'delete_order'
   get 'dashboards/commerce', to: 'dashboards#commerce_index'

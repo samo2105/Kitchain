@@ -13,7 +13,7 @@
       <div class="text-center">
         <h2> Ventas Activas </h2>
         <div id="sales">
-          <%= render @sales.where(state: [1,2]) %>
+          <%= render @sales.where(state: [1,2,3]).order(:created_at) %>
         </div>
       </div>
     </div>
