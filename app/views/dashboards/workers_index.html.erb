@@ -13,7 +13,7 @@
           <div class="col-sm-6 text-center pl-4">
             Nombre: <%= @worker.name %> <br>
             Email: <%= @worker.email %> <br>
-            Ventas este mes: <%= @worker_month_sales.count %> | $<%= @worker_month_sales.sum {|sale| sale.total} %>
+            Ventas este mes: <%= @worker_month_sales.count %> | $<%= @worker_month_sales.sum {|sale| if sale.total then  sale.total else 0 end} %>
           </div>
           <div class="col-sm-6">
             <%= link_to 'Editar perfil', edit_worker_registration_path, data: {remote: true} %><br>

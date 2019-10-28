@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'orders/create'
+  get 'orders/delete'
   get 'dashboards/commerce', to: 'dashboards#commerce_index'
   get 'dashboards/commerce_sales'
   get 'dashboards/commerce_kitchen'
@@ -8,7 +10,9 @@ Rails.application.routes.draw do
   get 'dashboards/workers_products'
   get 'dashboards/workers_sales'
   get 'dashboards/workers_tables'
+  resources :orders, only: [:create, :delete]
   resources :sales
+  resources :orders, only: [:update, :delete]
   resources :products
   devise_for :workers, controllers:
       {registrations: 'workers/registrations',

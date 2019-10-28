@@ -1,0 +1,6 @@
+$('#product_<%= @order.product.id %>').html('<div class="alert alert-success" role="alert">\n' +
+    '  Producto agregado a la venta\n' +
+    '</div>')
+$('#product_<%= @order.product.id %>_quantity').html('$<%= @order.product.price %> | Cantidad: <%= @order.product.quantity %>')
+$('#sale_<%= @order.sale.id%>_total').html('<%= @order.sale.total %>')
+$('#sales').html('<%= j render current_worker.sales.where(state: [1,2]) %>')

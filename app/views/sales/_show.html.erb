@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<p class="form-group">
+  <strong>Total:</strong>
+  <div id="sale_<%=@sale.id%>_total" class="form-control"><%= @sale.total %></div>
+</p>
+
+<p>
+  <strong>Payed:</strong>
+  <%= @sale.payed %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @sale.comment %>
+</p>
+
+<p>
+  <strong>Table:</strong>
+  <%= @sale.table %>
+</p>
+
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <h1>Productos</h1>
+  <% current_worker.office.products.each_slice(3) do |products| %>
+    <div class="card-deck">
+      <% products.each do |product| %>
+        <div class="card">
+          <img src="https://concepto.de/wp-content/uploads/2015/03/alimentos-e1549655531380.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"> <%= product.name %></h5>
+            <p class="card-text" id="product_<%= product.id %>_quantity">$<%= product.price %> | Cantidad: <%= product.quantity %></p>
+            <div id="product_<%= product.id %>">
+              <%= form_with model: Order.new do |f| %>
+                <%= f.label 'Cantidad' %>
+                <%= f.select :quantity, (1..20).map {|i| [i,i]} %>
+                <%= f.hidden_field :sale_id, value: @sale.id %>
+                <%= f.hidden_field :product_id, value: product.id %>
+                <%= f.submit 'Agregar', class:'btn btn-success' %>
+              <%end%>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
