@@ -23,7 +23,11 @@ class SaleUpdatesController < ApplicationController
   end
 
   def ready
-    @sale.state = 2
+    if @sale.state == 1
+      @sale.state = 2
+    else
+      @sale.state = 1
+    end
     @sale.save
     respond_to do |format|
       format.js
@@ -35,7 +39,7 @@ class SaleUpdatesController < ApplicationController
       @sale.state = 4
       @sale.save
       respond_to do |format|
-        format.js
+        format.js { render layout: false }
       end
     else
       flash[:alert] = 'La venta debe esta pagada y entregada'

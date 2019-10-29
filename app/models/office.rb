@@ -5,6 +5,8 @@ class Office < ApplicationRecord
   has_many :products, dependent: :destroy
   has_many :tables, dependent: :destroy
 
+  validates :name, presence: true
+
   def self.find_month_sales(office)
     date = Date.today
     office.sales.where(:created_at => date.at_beginning_of_month..date.at_end_of_month)

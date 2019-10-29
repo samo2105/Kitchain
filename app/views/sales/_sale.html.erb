@@ -11,7 +11,7 @@
         <div class="card d-inline">
           <b>Comentario: </b><%= sale.comment %>
         </div>
-        <div id="state">
+        <div id="state_<%= sale.id %>">
           <% case sale.state %>
           <% when 1 %>
             <div class="alert alert-primary p-0 w-25 d-inline">

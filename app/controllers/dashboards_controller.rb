@@ -3,7 +3,7 @@ class DashboardsController < ApplicationController
   before_action :authenticate_commerce!, only: [:commerce_index, :commerce_sales, :commerce_kitchen, :commerce_generals]
   before_action :authenticate_worker!, only: [:workers_index, :workers_kitchen, :workers_sales, :workers_products, :workers_tables]
   before_action :find_commerce_params, only: [:commerce_index, :commerce_sales, :commerce_kitchen, :commerce_generals]
-  before_action :find_worker_params, only: [:workers_index, :workers_kitchen, :workers_products, :workers_sales, :workers_tables]
+  before_action :find_worker_params, only: [:workers_index, :workers_products, :workers_sales, :workers_tables]
   def commerce_index
   end
 
@@ -41,6 +41,7 @@ class DashboardsController < ApplicationController
   end
 
   def workers_kitchen
+    @sales = current_worker.office.sales
   end
 
   def workers_products
@@ -48,9 +49,6 @@ class DashboardsController < ApplicationController
 
   def workers_sales
     @sale = Sale.new
-  end
-
-  def workers_tables
   end
 
   private

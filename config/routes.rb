@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  get 'tables/create'
+  get 'tables/edit'
+  get 'tables/destroy'
   patch 'payed/:id', to: 'sale_updates#payed', as: 'payed'
   patch 'given/:id', to: 'sale_updates#given', as: 'given'
   patch 'ready/:id', to: 'sale_updates#ready', as: 'ready'
   patch 'done/:id', to: 'sale_updates#done', as: 'done'
-resources :orders, only: [:create]
+  resources :orders, only: [:create]
+  resources :tables, only: [:new, :create, :destroy, :edit, :update]
   delete 'orders/:id', to: 'orders#delete', as: 'delete_order'
   get 'dashboards/commerce', to: 'dashboards#commerce_index'
   get 'dashboards/commerce_sales'
@@ -13,7 +17,6 @@ resources :orders, only: [:create]
   get 'dashboards/workers_kitchen'
   get 'dashboards/workers_products'
   get 'dashboards/workers_sales'
-  get 'dashboards/workers_tables'
   resources :orders, only: [:create, :delete]
   resources :sales
   resources :orders, only: [:update, :delete]
