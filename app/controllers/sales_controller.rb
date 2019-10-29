@@ -26,6 +26,7 @@ class SalesController < ApplicationController
     @sale = Sale.new(sale_params)
     @sale.worker = current_worker
     @sale.office = current_worker.office
+    @sale.total = 0
     @sale.state = 1
     if worker_signed_in?
       @sale.commerce = current_worker.commerce

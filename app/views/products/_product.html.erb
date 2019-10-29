@@ -8,8 +8,8 @@
       ...
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <%= link_to 'Ver producto', product, class:'dropdown-item' %>
-      <%= link_to 'Eliminar', product, method: :delete, data: {confirm: '¿Estás seguro? Esta acción es irreversible y eliminará todos los datos de este producto', remote: true}, class:'dropdown-item' %>
+      <%= link_to 'Ver producto', product,data: {remote: true}, class:'dropdown-item' %>
+      <%= link_to 'Eliminar', product , method: :delete, data: {confirm: '¿Estás seguro? Esta acción es irreversible y eliminará todos los datos de este producto', remote: true}, class:'dropdown-item' %>
     </div>
   </div></td>
 </tr>

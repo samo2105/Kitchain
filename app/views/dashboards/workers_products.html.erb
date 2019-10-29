@@ -1,22 +1,22 @@
 <%= render 'workers/shared/navbarworker' %>
 <br><br>
 <div class="container">
-  <div class="card bg-gray">
+  <div class="card text-center">
     <br>
-    <h1 class="text-center"> Tu Dashboard </h1>
-    <hr>
-    <div class="row text-center">
-      <div class="col-sm-6">
-        <h1> Hola </h1>
-        <h1> Hola </h1>
-        <h1> Hola </h1>
+    <h1>Productos</h1>
+    <br>
+    <% current_worker.office.products.each_slice(3) do |products| %>
+      <div class="card-deck p-3">
+        <% products.each do |product| %>
+          <div class="card">
+            <img src="https://concepto.de/wp-content/uploads/2015/03/alimentos-e1549655531380.jpg" class="card-img-top xs-hidden" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"> <%= product.name %></h5>
+              <p class="card-text" id="product_<%= product.id %>_quantity">$<%= product.price %> | Cantidad: <%= if product.quantity.to_i > 0 then product.quantity else 'Sin stock' end %></p>
+              </div>
+            </div>
+        <% end %>
       </div>
-
-      <div class="col-sm-6">
-        <h1> Hola </h1>
-        <h1> Hola </h1>
-        <h1> Hola </h1>
       </div>
+    <% end %>
     </div>
-  </div>
-</div>
