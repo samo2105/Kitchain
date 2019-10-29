@@ -7,7 +7,7 @@
     <hr>
     <div class="text-center">
       <div class="" id="kitchen_sales">
-        <% @sales.order(:created_at).each do |sale| %>
+        <% @sales.where(state: [1,2,3]).order(:created_at).each do |sale| %>
           <div class="container" id="sale_<%= sale.id %>_container">
             <div class="card" style="min-height: 5vh">
               <small>

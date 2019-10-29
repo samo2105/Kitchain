@@ -1,4 +1,4 @@
-$('#kitchen_sales').html('<% @sales.order(:created_at).each do |sale| %>\n' +
+$('#kitchen_sales').html('<% @sales.where(state: [1,2,3]).order(:created_at).each do |sale| %>\n' +
     '          <div class="container" id="sale_<%= sale.id %>_container">\n' +
     '            <div class="card" style="min-height: 5vh">\n' +
     '              <small>\n' +

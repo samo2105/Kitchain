@@ -7,6 +7,9 @@ class Commerce < ApplicationRecord
   has_many :workers, dependent: :destroy
   has_many :sales, dependent: :destroy
 
+  validates :rol, presence: true, uniqueness: true
+  validates :name, presence: true
+
   def self.find_orders_ids(commerce)
     orders = []
     commerce.offices.each do |office|
