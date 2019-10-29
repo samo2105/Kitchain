@@ -5,9 +5,9 @@ class Ability
 
   def initialize(worker)
     if worker.admin?
-      can [:create], [Sale, Order, Product, Worker]
+      can [:create], [Sale, Order, Product, Worker, Table]
       can [:delete], [Worker, Sale, Product], office_id: worker.office.id
-      can :manage, [Sale], office_id: worker.office.id
+      can :manage, [Sale, Table, Product], office_id: worker.office.id
       can :manage, [Order], sale_id: worker.office.sales.ids
     else
       can [:create], [Sale, Order]

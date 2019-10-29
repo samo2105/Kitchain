@@ -11,7 +11,7 @@ $('#kitchen_sales').html('<% @sales.order(:created_at).each do |sale| %>\n' +
     '                <div class="card d-inline">\n' +
     '                  <b>Comentario: </b><%= sale.comment %>\n' +
     '                </div>\n' +
-    '                <div id="state">\n' +
+    '                <div id="state_<%= sale.id %>">\n' +
     '                  <% case sale.state;  when 1%>\n' +
     '                    <div class="alert alert-primary p-0 w-25 d-inline">\n' +
     '                      Pedido solicitado\n' +
@@ -26,7 +26,7 @@ $('#kitchen_sales').html('<% @sales.order(:created_at).each do |sale| %>\n' +
     '                    </div>\n' +
     '                  <% end %>\n' +
     '                </div>\n' +
-    '                <%= link_to "¿Pedido listo?", ready_path(sale.id), method: :patch ,data: {remote: true}, class:"alert alert-info w-25 p-0 d-inline" %>\n' +
+    '                <%= link_to '¿Pedido listo?', ready_path(sale.id), method: :patch ,data: {remote: true}, class:'alert alert-info w-25 p-0 d-inline' %>\n' +
     '              </small>\n' +
     '            </div>\n' +
     '          </div>\n' +

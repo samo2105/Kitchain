@@ -51,9 +51,6 @@ class DashboardsController < ApplicationController
     @sale = Sale.new
   end
 
-  def workers_tables
-  end
-
   private
 
   def find_commerce_params

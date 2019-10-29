@@ -28,10 +28,11 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to request.referrer, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
+        format.js
       else
-        format.html { render :new }
+        format.html { redirect_to request.referrer, alert:'El producto no pudo ser creado' }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
@@ -44,6 +45,7 @@ class ProductsController < ApplicationController
       if @product.update(product_params)
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @product.errors, status: :unprocessable_entity }
@@ -54,8 +56,11 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
+    orders = @product.orders
+    orders.each do |order|
+      order.product = nil
+    end
     @product.destroy
-    debugger
     respond_to do |format|
       format.js
     end

@@ -1,22 +1,46 @@
 <%= render 'workers/shared/navbarworker' %>
-<br><br>
 <div class="container">
   <div class="card text-center">
     <br>
     <h1>Productos</h1>
     <br>
-    <% current_worker.office.products.each_slice(3) do |products| %>
-      <div class="card-deck p-3">
-        <% products.each do |product| %>
-          <div class="card">
-            <img src="https://concepto.de/wp-content/uploads/2015/03/alimentos-e1549655531380.jpg" class="card-img-top xs-hidden" alt="...">
-            <div class="card-body">
-              <h5 class="card-title"> <%= product.name %></h5>
-              <p class="card-text" id="product_<%= product.id %>_quantity">$<%= product.price %> | Cantidad: <%= if product.quantity.to_i > 0 then product.quantity else 'Sin stock' end %></p>
+    <%= link_to 'Crear producto', new_product_path ,data: {remote: true}, class:'btn btn-primary col-sm-10 mx-auto p-2', style: 'position: unset' if @worker.admin %>
+    <div id="kitchenproducts">
+      <% current_worker.office.products.each_slice(3) do |products| %>
+        <div class="card-deck p-3">
+          <% products.each do |product| %>
+            <div class="card" id="product_<%= product.id %>">
+              <img src="https://concepto.de/wp-content/uploads/2015/03/alimentos-e1549655531380.jpg" class="card-img-top xs-hidden" alt="...">
+              <div class="card-body">
+                <h5 class="card-title"> <%= product.name %></h5>
+                <p class="card-text" id="product_<%= product.id %>_quantity">
+                  $<%= product.price %> | Cantidad: <%= if product.quantity.to_i > 0 then product.quantity else 'Sin stock' end %>
+                  <% if current_worker.admin %>
+                    <%= link_to 'Editar', edit_product_path(product.id), data: {remote: true}, class:'btn btn-warning p-2', style: 'position: unset' %>
+                    <%= link_to 'Eliminar', product, method: :delete, data: {confirm: 'Se eliminarán todos los datos de este product', remote: true}, class:'btn btn-danger p-2', style: 'position: unset' %>
+                  <% end %>
+                </p>
               </div>
             </div>
-        <% end %>
-      </div>
-      </div>
-    <% end %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
+      </div>
+      <div class="card">
+        <br>
+        <h1 class="text-center"> Mesas </h1>
+        <br>
+        <%= link_to 'Crear Mesa', new_table_path, data: {remote: true}, class:'btn btn-primary col-sm-10 mx-auto p-2', style: 'position: unset' if @worker.admin %>
+        <div id="tables">
+          <%current_worker.office.tables.order(:created_at).each_slice(3) do |tables|%>
+            <div class="card-deck p-3">
+              <% tables.each do |table| %>
+                <%= render table%>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      </div>
+<br><br>
