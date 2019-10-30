@@ -25,3 +25,4 @@ Commerce.create(name:Faker::Company.name, rol: rand(1111111..9999999), number: r
   100.times {Order.create(product_id: Product.all.sample.id, quantity: rand(1..5), sale_id: Sale.all.sample.id, amount: rand(2000))}
 
 Worker.create(office_id: Office.last.id, name: "Trabajador admin", rol: (1234567), adress: "Av. falsa 3295", admin: true, email: 'workeradmin@mail.com', password:'123123', password_confirmation: '123123')
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
