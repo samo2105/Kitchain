@@ -11,37 +11,38 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :office_id %>
-    <%= form.text_field :office_id %>
+
+  <div class="field form-group">
+    <%= form.label 'Nombre' %>
+    <%= form.text_field :name, class:'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :rol %>
-    <%= form.number_field :rol %>
+    <%= form.number_field :rol, class:'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :adress %>
-    <%= form.text_field :adress %>
+    <%= form.text_field :adress, class:'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :number %>
-    <%= form.number_field :number %>
+    <%= form.number_field :number, class:'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :admin %>
-    <%= form.check_box :admin %>
+  <div class="field form-group">
+    <%= form.label 'Sucursal' %><br>
+    <%= form.select :office_id, if commerce_signed_in? then current_commerce.offices.pluck(:name, :id) else current_worker.office(:name, :id) end, worker_office_id: :id, class:'form-control'  %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label 'Administrador', class:'text-center' %>
+    <%= form.check_box :admin, class:'form-control' %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Enviar', class:'btn btn-primary col-sm-12' %>
   </div>
 <% end %>

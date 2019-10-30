@@ -22,6 +22,11 @@
     <%= f.number_field :number, autofocus: true, class:'form-control'  %>
   </div>
 
+  <div class="field form-group">
+    <%= f.label 'Imagen de perfil' %>
+    <%= f.file_field :image, class:'form-control' %>
+  </div>
+
   <div class="field  form-group">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'form-control'  %>

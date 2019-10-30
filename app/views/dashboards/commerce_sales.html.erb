@@ -4,7 +4,7 @@
   <br>
   <h1 class="text-white text-center"> Tu dashboard de ventas</h1>
   <br>
-  <div class="card p-3 text-center">
+  <div class="card p-3 text-center" style="overflow-x:auto">
     <br>
     <h2> Rendimiento de tus sucursales </h2>
     <hr>
@@ -36,7 +36,7 @@
     <br>
     <h2> Ventas por oficina (Total) </h2>
     <hr>
-    <div class="p-4"><%= bar_chart @commerce_office_sales, prefix: "$", refresh: 60, messages: {empty: "No hay datos"}  %></div>
+    <div class="p-4"><%= bar_chart @commerce_office_sales, prefix: "$", messages: {empty: "No hay datos"}  %></div>
   </div>
   <br>
   <div class="row">
@@ -79,7 +79,7 @@
         <br>
         <h2> Gráfico de ventas </h2>
         <hr>
-        <div class="p-4"><%= bar_chart @commerce_sale_chart, prefix: "$", refresh: 30, messages: {empty: "No hay datos"}  %></div>
+        <div class="p-4"><%= bar_chart @commerce_sale_chart, prefix: "$", messages: {empty: "No hay datos"}  %></div>
       </div>
     </div>
   </div>

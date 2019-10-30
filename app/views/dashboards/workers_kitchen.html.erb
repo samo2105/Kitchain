@@ -3,21 +3,63 @@
 <div class="container">
   <div class="card bg-gray">
     <br>
-    <h1 class="text-center"> Tu Dashboard </h1>
+    <h1 class="text-center"> Cocina </h1>
     <hr>
-    <div class="row text-center">
-      <div class="col-sm-6">
-        <h1> Hola </h1>
-        <h1> Hola </h1>
-        <h1> Hola </h1>
-      </div>
-
-      <div class="col-sm-6">
-        <h1> Hola </h1>
-        <h1> Hola </h1>
-        <h1> Hola </h1>
+    <div class="text-center">
+      <div class="" id="kitchen_sales">
+        <% @sales.where(state: [1,2,3]).order(:created_at).each do |sale| %>
+          <div class="container" id="sale_<%= sale.id %>_container">
+            <div class="card" style="min-height: 5vh">
+              <small>
+                <b>Total: </b><%= number_to_currency(sale.total, precision: 0)  %>
+                <b id="payed_<%= sale.id %>">Pagado: <%= if sale.payed? then 'Si' else 'No' end %></b>
+                <b>Productos: </b>
+                <% sale.orders.each do |order| %>
+                  <%= order.quantity %> <%= order.product.name %> |
+                <% end %>
+                <div class="card d-inline">
+                  <b>Comentario: </b><%= sale.comment %>
+                </div>
+                <div id="state_<%= sale.id %>">
+                  <% case sale.state %>
+                  <% when 1 %>
+                    <div class="alert alert-primary p-0 w-25 d-inline">
+                      Pedido Solicitado
+                    </div>
+                  <% when 2 %>
+                    <div class="alert alert-success p-0 w-25 d-inline">
+                      Pedido Preparado
+                    </div>
+                  <% when 3 %>
+                    <div class="alert alert-warning p-0 w-25 d-inline">
+                      Pedido Entregado
+                    </div>
+                  <% end %>
+                </div>
+                <%= link_to '¿Pedido listo?', ready_path(sale.id), method: :patch ,data: {remote: true}, class:'alert alert-info w-25 p-0 d-inline' %>
+              </small>
+            </div>
+          </div>
+          <div class="p-1"></div>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
+
+<script type="application/javascript">
+    $(document).on('ready turbolinks:load', function () {
+        workerkitchen = setInterval(function () {
+            if(window.location.pathname == '/dashboards/workers_kitchen'){
+                $.ajax({
+                    url: '/dashboards/workers_kitchen',
+                    type: 'GET',
+                    dataType: 'script'
+                });
+            } else {
+                clearInterval(workerkitchen)
+            }
+        }, 5000)
+    });
+</script>
 

@@ -1,0 +1,13 @@
+<div class="card" id="table_<%= table.id %>_card">
+  <img src="https://concepto.de/wp-content/uploads/2015/03/alimentos-e1549655531380.jpg" class="card-img-top xs-hidden" alt="...">
+  <div class="card-body">
+    <p class="card-text" id="table_<%= table.id %>"><%= table.description %> <br> Tamaño: <%= table.size %><hr>
+      <% if current_worker.admin? %>
+        <small>
+        <%= link_to 'Editar', edit_table_path(table.id), data: {remote: true}, class:'btn btn-warning p-2', style: 'position: unset' %>
+        <%= link_to 'Eliminar', table, method: :delete, data: {confirm: 'Se eliminarán todos los datos de esta mesa', remote: true}, class:'btn btn-danger p-2', style: 'position: unset' %>
+        </small>
+      <% end %>
+    </p>
+  </div>
+</div>

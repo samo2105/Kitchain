@@ -1,0 +1,1 @@
+$('#sales').html('<%= j render current_worker.sales.where(state: [1,2,3]).order(:created_at) %>')

@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+<h1>Productos</h1>
+    <% current_worker.office.products.each_slice(3) do |products| %>
+        <div class="card-deck">
+          <% products.each do |product| %>
+            <div class="card">
+              <% if product.image.attached? %>
+                <%= image_tag(product.image, class:"card-img img-thumbnail") %>
+              <% else %>
+                <img src="https://concepto.de/wp-content/uploads/2015/03/alimentos-e1549655531380.jpg" class="card-img-top" alt="...">
+              <% end %>
+              <div class="card-body">
+                <h5 class="card-title"> <%= product.name %></h5>
+                <p class="card-text">$<%= product.price %> | Cantidad: <%= product.quantity %></p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+        <% end %>
+        </div>
+    <% end %>
+</div>

@@ -1,6 +1,6 @@
 class CommercesController < ApplicationController
+  skip_authorization_check
   before_action :set_commerce, only: [:show, :edit, :update, :destroy]
-
   # GET /commerces
   # GET /commerces.json
   def index

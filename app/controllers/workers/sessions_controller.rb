@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Workers::SessionsController < Devise::SessionsController
+  skip_authorization_check
   respond_to :html, :js
   # before_action :configure_sign_in_params, only: [:create]
 

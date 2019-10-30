@@ -1,0 +1,11 @@
+<% if alert || notice %>
+  <script type="application/javascript">
+    $(document).ready( function () {
+        $('.modal-title').html('');
+        $('.modal-body').html("<div class=\"alert alert-<%= if alert then 'warning' else 'success' end %> fade show text-center\" role=\"alert\">\n" +
+            "  <strong><%= alert %><%= notice %></strong>\n" +
+            "</div>");
+        $('#Modal').modal('show')
+    });
+  </script>
+<% end %>

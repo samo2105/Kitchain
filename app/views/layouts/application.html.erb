@@ -18,8 +18,8 @@
 </head>
 <body>
 <%= render 'shared/navbar' if current_page?(root_path) || current_page?(features_path) || current_page?(pricing_path)%>
-<%= render 'shared/alerts' %>
 <div class="bg-img">
+  <%= render 'shared/alerts' %>
   <%= yield %>
   <%= render 'shared/modal' %>
 </div>

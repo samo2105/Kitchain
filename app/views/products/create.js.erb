@@ -1,0 +1,25 @@
+$('#kitchenproducts').html('<% current_worker.office.products.each_slice(3) do |products| %>\n' +
+    '        <div class="card-deck p-3">\n' +
+    '          <% products.each do |product| %>\n' +
+    '            <div class="card" id="product_<%= product.id %>">\n' +
+    '             <% if product.image.attached? %>\n' +
+    '                <%= image_tag(product.image, class:"card-img img-thumbnail") %>\n' +
+    '              <% else %>\n' +
+    '                <img src="https://concepto.de/wp-content/uploads/2015/03/alimentos-e1549655531380.jpg" class="card-img-top" alt="...">\n' +
+    '              <% end %>' +
+    '              <div class="card-body">\n' +
+    '                <h5 class="card-title"> <%= product.name %></h5>\n' +
+    '                <p class="card-text" id="product_<%= product.id %>_quantity">\n' +
+    '                  $<%= product.price %> | Cantidad: <%= if product.quantity.to_i > 0 then product.quantity else "Sin stock" end %>\n' +
+    '                  <% if current_worker.admin %>\n' +
+    '                    <%= link_to "Editar", edit_product_path(product.id), data: {remote: true}, class:"btn btn-warning p-2", style: "position: unset" %>\n' +
+    '                    <%= link_to "Eliminar", product, method: :delete, data: {confirm: "Se eliminarán todos los datos de este producto", remote: true}, class:"btn btn-danger p-2", style: "position: unset" %>\n' +
+    '                  <% end %>\n' +
+    '                </p>\n' +
+    '              </div>\n' +
+    '            </div>\n' +
+    '          <% end %>\n' +
+    '        </div>\n' +
+    '      <% end %>');
+$('#Modal').modal('hide');
+alert('El producto ha sido creado con éxito');

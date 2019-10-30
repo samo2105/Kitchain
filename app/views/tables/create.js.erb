@@ -1,0 +1,9 @@
+$('#tables').html("<% current_worker.office.tables.order(:created_at).each_slice(3) do |tables| %>\n" +
+    "      <div class='card-deck p-3'>\n" +
+    "        <% tables.each do |table| %>\n" +
+    "          <%= j render table %>\n" +
+    "        <% end %>\n" +
+    "      </div>\n" +
+    "  <% end %>")
+$('#Modal').modal('hide')
+alert('La mesa ha sido creada')

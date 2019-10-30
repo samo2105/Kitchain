@@ -12,13 +12,10 @@
         <%= link_to 'Ventas', dashboards_workers_sales_path, class:'btn btn-info text-left text-white col-lg-12 mt-1', id:'nav-side-button' %>
       </li>
       <li>
-        <%= link_to 'Productos', dashboards_workers_products_path, class:'btn btn-info text-left text-white col-lg-12 mt-1', id:'nav-side-button' %>
+        <%= link_to 'Productos y mesas', dashboards_workers_products_path, class:'btn btn-info text-left text-white col-lg-12 mt-1', id:'nav-side-button' %>
       </li>
       <li>
         <%= link_to 'Cocina', dashboards_workers_kitchen_path, class:'btn btn-info text-left text-white col-lg-12 mt-1', id:'nav-side-button' %>
-      </li>
-      <li>
-        <%= link_to 'Mesas', dashboards_workers_tables_path, class:'btn btn-info text-left text-white col-lg-12 mt-1', id:'nav-side-button' %>
       </li>
       <hr>
       <li>
@@ -31,8 +28,11 @@
         </h5>
       </li>
       <li>
-        <%= image_tag('http://www.unfv.edu.pe/facultades/fiei/images/cono_a.png', style:'height: 15vh; width: 15vh; margin-left: 25%', class:'img-thumbnail') %>
-      </li>
+        <% if current_worker.image.attached? %>
+          <%= image_tag(current_worker.image, class:"img-thumbnail", style:"height: 15vh; margin-left: 25%; width: 15vh") %>
+        <% else %>
+          <img src="https://image.freepik.com/vector-gratis/perfil-avatar-hombre-icono-redondo_24640-14044.jpg" class="img-thumbnail" style="max-height: 15vh; margin-left: 25%">
+        <% end %>      </li>
       <br>
       <li>
         <h5 class="text-white">

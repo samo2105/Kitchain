@@ -44,12 +44,17 @@
 
 <script type="application/javascript">
     $(document).on('ready turbolinks:load', function () {
-        setInterval(function () {
-            $.ajax({
-                url: '/dashboards/commerce_generals',
-                type: 'GET',
-                dataType: 'script'
-            })
+        realtime = setInterval(function () {
+            if (window.location.pathname == '/dashboards/commerce_generals'){
+                $.ajax({
+                    url: '/dashboards/commerce_generals',
+                    type: 'GET',
+                    dataType: 'script'
+                });
+            } else {
+                clearInterval(realtime)
+            }
+
         }, 5000)
     });
 </script>

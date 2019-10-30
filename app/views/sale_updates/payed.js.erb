@@ -1,0 +1,1 @@
+$('#payed_<%= @sale.id %>').html("Pagado: <%= if @sale.payed? then 'Si' else 'No' end %>")

@@ -1,6 +1,5 @@
 class SalesController < ApplicationController
-  before_action :set_sale, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /sales
   # GET /sales.json
   def index
@@ -25,14 +24,18 @@ class SalesController < ApplicationController
   # POST /sales.json
   def create
     @sale = Sale.new(sale_params)
+    @sale.worker = current_worker
+    @sale.office = current_worker.office
+    @sale.total = 0
+    @sale.state = 1
     if worker_signed_in?
-      @sale.commerce = current_worker.commerce.id
+      @sale.commerce = current_worker.commerce
     else
       @sale.commerce = current_commerce.id
     end
     respond_to do |format|
       if @sale.save
-        format.html { redirect_to @sale, notice: 'Sale was successfully created.' }
+        format.js
         format.json { render :show, status: :created, location: @sale }
       else
         format.html { render :new }
@@ -48,6 +51,7 @@ class SalesController < ApplicationController
       if @sale.update(sale_params)
         format.html { redirect_to @sale, notice: 'Sale was successfully updated.' }
         format.json { render :show, status: :ok, location: @sale }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @sale.errors, status: :unprocessable_entity }
@@ -62,6 +66,7 @@ class SalesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to sales_url, notice: 'Sale was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 

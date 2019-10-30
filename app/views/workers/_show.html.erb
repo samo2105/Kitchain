@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sucursal:</strong>
+  <%= @worker.office.name %>
+</p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @worker.name %>
+</p>
+
+<p>
+  <strong>Rut:</strong>
+  <%= @worker.rol %>
+</p>
+
+<p>
+  <strong>Dirección:</strong>
+  <%= @worker.adress %>
+</p>
+
+<p>
+  <strong>Número:</strong>
+  <%= @worker.number %>
+</p>
+
+<p>
+  <strong>Administrador:</strong>
+  <%= if @worker.admin? then 'Afirmativo' else 'Negativo' end %>
+</p>
+<hr>
+<%= link_to 'Edit', edit_worker_path(@worker), data:{remote: true}, class:'btn btn-primary' %>

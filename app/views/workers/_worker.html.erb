@@ -7,7 +7,8 @@
       ...
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <%= link_to 'Ver trabajador', worker, class:'dropdown-item' %>
+      <%= link_to 'Ver trabajador', worker, data: {remote: true}, class:'dropdown-item' %>
+      <%= link_to 'Editar trabajador', edit_worker_path(worker), data: {remote: true}, class:'dropdown-item' %>
       <%= link_to 'Eliminar', worker, method: :delete, data: {confirm: '¿Estás seguro? Esta acción es irreversible y eliminará todos los datos de esta oficina', remote: true}, class:'dropdown-item' %>
     </div>
   </div></td>

@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<p class="form-group">
+  <strong>Total:</strong>
+  <div id="sale_<%=@sale.id%>_total" class="form-control">$<%= @sale.total %></div>
+</p>
+
+<%= form_with(model: @sale) do |f| %>
+<p class="form-group">
+  <%= f.label 'Comentario' %>
+  <%= f.text_field :comment, class:'form-control' %>
+</p>
+  <%= f.submit 'Guardar comentario' %>
+<% end %>
+<div id="alerts"></div>
+
+<p class="form-group">
+  <strong>Mesa:</strong>
+<div class="form-control"><%= @sale.table.description %></div>
+</p>
+
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <h1>Productos</h1>
+  <% current_worker.office.products.each_slice(3) do |products| %>
+    <div class="card-deck">
+      <% products.each do |product| %>
+        <div class="card">
+          <% if product.image.attached? %>
+            <%= image_tag(product.image, class:"card-img img-thumbnail") %>
+          <% else %>
+            <img src="https://concepto.de/wp-content/uploads/2015/03/alimentos-e1549655531380.jpg" class="card-img-top" alt="...">
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"> <%= product.name %></h5>
+            <p class="card-text" id="product_<%= product.id %>_quantity">$<%= product.price %> | Cantidad: <%= if product.quantity.to_i > 0 then product.quantity else 'Sin stock' end %></p>
+            <% if product.quantity.to_i > 0 %>
+              <div id="product_<%= product.id %>">
+                <%= form_with model: Order.new do |f| %>
+                  <%= f.label 'Cantidad' %>
+                  <%= f.select :quantity, (1..20).map {|i| [i,i]} %>
+                  <%= f.hidden_field :sale_id, value: @sale.id %>
+                  <%= f.hidden_field :product_id, value: product.id %>
+                  <%= f.submit 'Agregar', class:'btn btn-success' %>
+                <%end%>
+              <% else %>
+              <div class="alert alert-danger" role="alert">
+                Producto sin stock
+              </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

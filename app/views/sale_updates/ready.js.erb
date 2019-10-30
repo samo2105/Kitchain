@@ -1,0 +1,3 @@
+$('#state_<%= @sale.id %>').html(' <div class="alert alert-<%= if @sale.state == 2 then "success" else "primary" end %> p-0 w-25 d-inline">\n' +
+    '            <%= if @sale.state == 2 then "Pedido Preparado" else "Pedido Solicitado" end %>\n' +
+    '          </div>')

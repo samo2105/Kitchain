@@ -5,18 +5,31 @@
     <br>
     <h1 class="text-center"> Tu Dashboard </h1>
     <hr>
-    <div class="row text-center">
-      <div class="col-sm-6">
-        <h1> Hola </h1>
-        <h1> Hola </h1>
-        <h1> Hola </h1>
+      <div class="text-center">
+        <h2> Crear nueva venta</h2>
+        <%= render 'sales/new' %>
       </div>
 
-      <div class="col-sm-6">
-        <h1> Hola </h1>
-        <h1> Hola </h1>
-        <h1> Hola </h1>
+      <div class="text-center">
+        <h2> Ventas Activas </h2>
+        <div id="sales">
+          <%= render @sales.where(state: [1,2,3]).order(:created_at) %>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<script type="application/javascript">
+    $(document).on('ready turbolinks:load', function () {
+        workersale = setInterval(function () {
+            if(window.location.pathname == "/dashboards/workers_sales"){
+                $.ajax({
+                    url: '/dashboards/workers_sales',
+                    type: 'GET',
+                    dataType: 'script'
+                });
+            } else {
+                clearInterval(workersale)
+            }
+            }, 1000)
+    });
+</script>

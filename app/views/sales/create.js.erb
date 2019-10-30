@@ -1,0 +1,4 @@
+$('#sales').append('<%= j render @sale %>');
+$('#ModalLabel').html("Agregar productos a venta")
+$('.modal-body').html("<%= j render 'sales/show' %>");
+$('#Modal').modal('show');

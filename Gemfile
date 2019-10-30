@@ -5,9 +5,12 @@ ruby '2.6.3'
 gem 'devise'
 gem 'faker'
 gem 'activestorage'
-gem 'aws-sdk-rails'
+gem 'aws-sdk-s3', '~> 1'
 gem "chartkick"
 gem "groupdate"
+gem 'cancancan'
+gem 'activeadmin'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use postgresql as the database for Active Record
