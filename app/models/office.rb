@@ -4,6 +4,7 @@ class Office < ApplicationRecord
   has_many :sales, dependent: :nullify
   has_many :products, dependent: :destroy
   has_many :tables, dependent: :destroy
+  has_one_attached :image, dependent: :destroy
 
   validates :name, presence: true
 

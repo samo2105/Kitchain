@@ -28,8 +28,11 @@
         </h5>
       </li>
       <li>
-        <%= image_tag('http://www.unfv.edu.pe/facultades/fiei/images/cono_a.png', style:'height: 15vh; width: 15vh; margin-left: 25%', class:'img-thumbnail') %>
-      </li>
+        <% if current_worker.image.attached? %>
+          <%= image_tag(current_worker.image, class:"img-thumbnail", style:"height: 15vh; margin-left: 25%; width: 15vh") %>
+        <% else %>
+          <img src="https://image.freepik.com/vector-gratis/perfil-avatar-hombre-icono-redondo_24640-14044.jpg" class="img-thumbnail" style="max-height: 15vh; margin-left: 25%">
+        <% end %>      </li>
       <br>
       <li>
         <h5 class="text-white">

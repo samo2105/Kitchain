@@ -27,6 +27,11 @@
   </div>
 
   <div class="field form-group">
+    <%= form.label 'Imagen' %>
+    <%= form.file_field :image, class:'form-control' %>
+  </div>
+
+  <div class="field form-group">
     <%= form.hidden_field :office_id, value: current_worker.office.id %>
   </div>
 

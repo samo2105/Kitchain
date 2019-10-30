@@ -10,7 +10,11 @@
         <div class="card-deck p-3">
           <% products.each do |product| %>
             <div class="card" id="product_<%= product.id %>">
-              <img src="https://concepto.de/wp-content/uploads/2015/03/alimentos-e1549655531380.jpg" class="card-img-top xs-hidden" alt="...">
+              <% if product.image.attached? %>
+                <%= image_tag(product.image, class:"card-img img-thumbnail") %>
+              <% else %>
+                <img src="https://concepto.de/wp-content/uploads/2015/03/alimentos-e1549655531380.jpg" class="card-img-top" alt="...">
+              <% end %>
               <div class="card-body">
                 <h5 class="card-title"> <%= product.name %></h5>
                 <p class="card-text" id="product_<%= product.id %>_quantity">

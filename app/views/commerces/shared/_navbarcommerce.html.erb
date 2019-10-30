@@ -28,7 +28,11 @@
         </h5>
       </li>
       <li>
-        <img src="https://image.freepik.com/vector-gratis/perfil-avatar-hombre-icono-redondo_24640-14044.jpg" class="img-thumbnail" style="max-height: 15vh; margin-left: 25%">
+        <% if current_commerce.image.attached? %>
+          <%= image_tag(current_commerce.image, class:"img-thumbnail", style:"height: 15vh; margin-left: 25%; width: 15vh") %>
+        <% else %>
+          <img src="https://image.freepik.com/vector-gratis/perfil-avatar-hombre-icono-redondo_24640-14044.jpg" class="img-thumbnail" style="max-height: 15vh; margin-left: 25%">
+        <% end %>
       </li>
       <br>
       <li>

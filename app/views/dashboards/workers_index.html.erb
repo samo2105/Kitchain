@@ -8,7 +8,11 @@
     <div class="row text-center">
       <div class="col-sm-6">
         <h4>Mis datos</h4>
-        <%= image_tag('https://definicionde.es/wp-content/uploads/2019/04/definicion-de-persona-min.jpg', class:'img-thumbnail') %>
+        <% if current_worker.image.attached? %>
+          <%= image_tag(current_worker.image, class:"img-thumbnail") %>
+        <% else %>
+          <%= image_tag('https://definicionde.es/wp-content/uploads/2019/04/definicion-de-persona-min.jpg', class:'img-thumbnail') %>
+        <% end %>
         <div class="row">
           <div class="col-sm-6 text-center pl-4">
             Nombre: <%= @worker.name %> <br>
