@@ -10,7 +10,7 @@ class CustomFailure < Devise::FailureApp
     else
       store_location!
       flash[:alert] = i18n_message unless flash[:notice]
-      redirect_to request.referrer
+      redirect_to root_path
     end
   end
 end
