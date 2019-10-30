@@ -1,5 +1,5 @@
 class UserNotifierMailer < ApplicationMailer
-  default :from => 'no-reply@kitchain.com'
+  default :from => 'no-reply@thekitchain.com'
 
   def send_signup_email(object)
     @object = object
