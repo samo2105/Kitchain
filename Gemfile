@@ -5,7 +5,7 @@ ruby '2.6.3'
 gem 'devise'
 gem 'faker'
 gem 'activestorage'
-gem 'aws-sdk-rails'
+gem 'aws-sdk-s3', '~> 1'
 gem "chartkick"
 gem "groupdate"
 gem 'cancancan'

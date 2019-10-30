@@ -1,6 +1,10 @@
 <div class="container">
 <div class="card">
+  <% if @office.image.attached? %>
+    <%= image_tag(@office.image, class:"card-img img-thumbnail") %>
+  <% else %>
     <img src="https://dojiw2m9tvv09.cloudfront.net/4/product/sucursal9736.png" class="card-img img-thumbnail" alt="...">
+  <% end %>
     <div class="card-body">
       <h5 class="card-title">Sucursal: <%= @office.name %> </h5>
       <p class="card-text">

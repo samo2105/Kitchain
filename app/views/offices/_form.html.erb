@@ -26,6 +26,11 @@
     <%= form.text_field :number, class:'form-control'  %>
   </div>
 
+  <div class="field form-group">
+    <%= form.label 'Imagen' %>
+    <%= form.file_field :image, class:'form-control' %>
+  </div>
+
   <div class="actions">
     <%= form.submit 'Enviar', class:'btn btn-primary col-sm-4' %>
   </div>
