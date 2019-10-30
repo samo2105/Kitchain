@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  get 'tables/create'
-  get 'tables/edit'
-  get 'tables/destroy'
+  resources :tables, only: [:create, :edit, :destroy]
   patch 'payed/:id', to: 'sale_updates#payed', as: 'payed'
   patch 'given/:id', to: 'sale_updates#given', as: 'given'
   patch 'ready/:id', to: 'sale_updates#ready', as: 'ready'
@@ -25,12 +23,14 @@ Rails.application.routes.draw do
   resources :products
   devise_for :workers, controllers:
       {registrations: 'workers/registrations',
-      sessions: 'workers/sessions'}
+      sessions: 'workers/sessions',
+      passwords: 'workers/passwords'}
   resources :workers
   resources :offices
   devise_for :commerces, controllers:{
       registrations: 'commerces/registrations',
-      sessions: 'commerces/sessions'}
+      sessions: 'commerces/sessions',
+  passwords: 'commerces/passwords'}
   resources :commerces
   get 'landing', to: 'landing#index'
   get 'landing/features', to: 'landing#features', as: 'features'

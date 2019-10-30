@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Commerces::PasswordsController < Devise::PasswordsController
+  skip_authorize_resource
+  skip_authorization_check
   respond_to :html, :js
   # GET /resource/password/new
   # def new
